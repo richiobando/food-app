@@ -1,0 +1,57 @@
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailBody {
+  color: #fff;
+  background-color: #252120;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.recipeDetail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recipeDetail-container {
+  box-shadow: 10px 10px 67px 58px #c5c3c3;
+  -webkit-box-shadow: 10px 10px 67px 58px #c5c3c3;
+  -moz-box-shadow: 10px 10px 67px 58px #c5c3c3;
+  display: flex;
+  flex-direction: column;
+  height: 800px;
+  width: 867px;
+  align-items: center;
+  justify-content: center;
+}
+
+.createBody .button {
+  background: #252120;
+}
+.createBody .create {
+  background: #dcdcdc;
+  color: #252120;
+}
+
+.diets-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+
+  align-content: space-around;
+  justify-content: center;
+}
+.diet-tag {
+  background: #e33;
+  margin: 15px;
+  color: #fff;
+  display: inline;
+  padding: 0 5px;
+  border-radius: 5px;
+}

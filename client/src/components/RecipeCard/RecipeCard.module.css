@@ -1,0 +1,49 @@
+:root {
+  --c: 15vw;
+}
+
+.container {
+  box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
+  -webkit-box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
+  -moz-box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.imgContainer {
+  background: #c4c4c3;
+  height: calc(1vw + var(--c));
+  width: calc(1vw + var(--c));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  clip-path: circle(40%);
+}
+.imgContainer img {
+  height: var(--c);
+  width: var(--c);
+  border-radius: 50%;
+  transform: scale(0.8);
+}
+
+.container:hover {
+  transition: 0.3s;
+  background-color: transparent;
+  box-shadow: none;
+}
+.dietsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.dietTag {
+  background: #e33;
+  color: #fff;
+  display: inline-block;
+  margin: 10px;
+  padding: 0 10px;
+  border-radius: 5px;
+}

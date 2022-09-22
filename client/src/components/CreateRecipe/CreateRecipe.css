@@ -1,0 +1,86 @@
+.createBody {
+  padding: 70px;
+  color: #fff;
+  background-color: #252120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.createRecipe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.error {
+  color: #f00;
+}
+.createRecipe-container {
+  box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
+  -webkit-box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
+  -moz-box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
+  display: flex;
+  flex-direction: column;
+
+  width: 867px;
+  align-items: center;
+  justify-content: center;
+}
+.createRecipe-container input {
+  font-family: sans-serif;
+  padding: 10px;
+  background: #dcdcdc;
+  border-style: none;
+}
+.createRecipe-container label {
+  display: block;
+  margin: 20px;
+}
+.createBody .button {
+  background: #252120;
+  width: 163px;
+}
+.createBody .create {
+  background: #dcdcdc;
+  color: #252120;
+  width: 163px;
+}
+
+.diets-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-content: space-around;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.diets-container .diet-tag {
+  background: #c5c3c3;
+  margin: 15px;
+  cursor: pointer;
+  color: #252120;
+  display: inline;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+.diets-container .diet-tag.included {
+  background: #e33;
+  margin: 15px;
+  cursor: pointer;
+  color: #fff;
+  display: inline;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
+.step-button {
+  padding: 5px;
+  border: 1px solid #000;
+}
+.createdStep {
+  display: flex;
+  justify-content: center;
+}
+.image-container img {
+  width: 400px;
+}

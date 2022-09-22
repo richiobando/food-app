@@ -1,0 +1,42 @@
+nav {
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigationForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  transition: all 2s ease;
+}
+.navigationForm .active{
+  width: 50px;
+}
+.navigationForm .text {
+  display: none;
+  transition: all 2s;
+}
+.navigationForm .text.active {
+  background: #c5c3c3;
+  display: inline;
+  border-style: none;
+  position: relative;
+  font-family: sans-serif;
+  font-size: 1rem;
+  padding: 10px;
+  width: 350px;
+}
+
+.navigationForm .cancel {
+  display: none;
+}
+.navigationForm img {
+  width: 30px;
+  filter:contrast(0)
+}
+.navigationForm .cancel.active {
+  display: inline;
+}

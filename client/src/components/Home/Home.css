@@ -1,0 +1,27 @@
+.home-container {
+  color: #fff;
+  background-color: #252120;
+  background-size: 20px 20px;
+}
+
+
+.cards-container {
+  
+  padding: 8vw;
+  display: flex;
+  display: grid;
+  grid-gap: 4vw;
+  grid-auto-flow: row dense;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.cards-container > *:nth-child(2n):nth-last-of-type(1) {
+  grid-column: span 3;
+}
+.pagination {
+  padding-top: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

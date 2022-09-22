@@ -1,0 +1,130 @@
+import {
+  GET_ALL_RECIPES,
+  GET_RECIPE_ID,
+  GET_DIETS,
+  GET_RECIPE_NAME,
+  ORDER_RECIPE,
+  ORDER_HEALTHSCORE,
+  CREATE_RECIPE,
+  DELETE_RECIPE,
+  FILTER_BY_DIET,
+} from '../actions'
+// import actions from '../actions'
+
+const initialState = {
+  recipes: [],
+  recipesModified: [],
+  recipeDetail: {},
+  diets: [],
+}
+
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_ALL_RECIPES:
+      return {
+        ...state,
+        recipes: action.payload,
+        recipesModified: action.payload,
+      }
+    case GET_RECIPE_ID:
+      return {
+        ...state,
+        recipeDetail: action.payload,
+      }
+    case GET_RECIPE_NAME:
+      return {
+        ...state,
+        recipes: action.payload,
+        recipesModified: action.payload,
+      }
+
+    // // [action.payload.prop]
+    case FILTER_BY_DIET:
+      const originalRecipes = [...state.recipes]
+      console.log('diets', originalRecipes)
+      console.log('action.payload', action.payload)
+      console.log('recipesFilter.diets', originalRecipes[0].diets)
+      const recipesFilter = originalRecipes.filter((r) =>
+        r.diets.includes(action.payload)
+      )
+      // recipesFilter.filter((r) => r.diets.some((e) => e === action.payload))
+      console.log('with filter diets', recipesFilter)
+      return {
+        ...state,
+        recipesModified:
+          action.payload === 'diets' ? originalRecipes : recipesFilter,
+      }
+    case GET_DIETS:
+      return {
+        ...state,
+        diets: action.payload,
+      }
+    case ORDER_RECIPE:
+      const values = [...state.recipesModified]
+      values.sort((a, b) => {
+        return (
+          (action.payload === 'A-Z' &&
+            ((a.title.toUpperCase() > b.title.toUpperCase() && 1) ||
+              (a.title.toUpperCase() < b.title.toUpperCase() && -1))) ||
+          (action.payload === 'Z-A' &&
+            ((b.title.toUpperCase() > a.title.toUpperCase() && 1) ||
+              (b.title.toUpperCase() < a.title.toUpperCase() && -1))) ||
+          (action.payload === 'L-H' &&
+            ((a.healthScore > b.healthScore && 1) ||
+              (a.healthScore < b.healthScore && -1))) ||
+          (action.payload === 'H-L' &&
+            ((b.healthScore > a.healthScore && 1) ||
+              (b.healthScore < a.healthScore && -1))) ||
+          0
+        )
+      })
+      return {
+        ...state,
+        recipesModified: values,
+      }
+    case ORDER_HEALTHSCORE:
+      const valuesOrderHealthScore = [...state.recipesModified]
+      valuesOrderHealthScore.sort((a, b) => a.healthScore - b.healthScore)
+      return {
+        ...state,
+        recipesModified: valuesOrderHealthScore,
+      }
+
+    case CREATE_RECIPE:
+      return {
+        ...state,
+        recipes: state.recipes.concat(action.payload),
+      }
+    case DELETE_RECIPE:
+      return {
+        ...state,
+        recipes: state.recipes.filter((r) => r.id !== action.payload),
+      }
+
+    default:
+      return { ...state }
+  }
+}
+
+export default rootReducer
+// idea for refactor
+/*
+
+ const days = ['lunes', 'martes', 'miercoles', 'jueves','viernes','sabado','domingo'] //change days to actions functions
+ 
+const actions = {
+  GET_ALL_RECIPES: return {...state, recipes: action.payload, recipesModified: action.payload,}
+} 
+const rootReducer = (state = initialState, action) => {
+  if(actions){
+    
+  }
+}
+  
+ function getDay(n) {
+   if (n < 1 || n > 7) {
+     throw Error('no a valid number')
+   }
+   return days[n+1]
+ }
+ */
