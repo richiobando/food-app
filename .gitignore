@@ -105,4 +105,4 @@ dist
 
 # package-lock.json
 package-lock.json
-client/src/full-api-foo.js
+client/src/full-api-food.js
