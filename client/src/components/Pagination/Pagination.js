@@ -6,30 +6,31 @@ export default function Pagination({
   handleNumberClick,
   RecipesNumber,
 }) {
-  const pagesNumber = Math.ceil(RecipesNumber)
+  const pagesNumber = Math.ceil(RecipesNumber) - 1
+  
   const handleFirst = () => {
     setCurrentPage(0)
   }
   const handleLast = () => {
-    setCurrentPage((pagesNumber-1)*9)
+    setCurrentPage(pagesNumber*9)
   }
 
   const handlePrev = () => {
     if (currentPage > 0) {
-      return setCurrentPage(currentPage - 1)
+      return setCurrentPage(currentPage - 9)
     }
-    return setCurrentPage(currentPage)
+    return 
   }
   const handleNext = () => {
-    if (currentPage !== pagesNumber) {
-      return setCurrentPage(currentPage + 1)
+    if (currentPage < (pagesNumber)*9) {
+      return setCurrentPage(currentPage + 9)
     }
-    return setCurrentPage(currentPage)
+    return 
   }
   console.log('pagesNumber',pagesNumber)
   console.log('currentPage', currentPage)
   
-  const pages = Array(pagesNumber).fill(0)
+  const pages = Array(pagesNumber+1).fill(0)
   return (
     <div className={s.container}>
       <button className='button' onClick={handleFirst}>
@@ -40,8 +41,7 @@ export default function Pagination({
       </button>
       {pages.map((n, i) => (
         <button
-          className='button'
-          value='f'
+          className={currentPage/9===i?s.active:s.buttonNormal}
           onClick={() => handleNumberClick(i)}
           key={i}
         >

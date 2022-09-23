@@ -21,7 +21,7 @@ export default function Home() {
     currentPage,
     currentPage + recipesPerPage
   )
-console.log('recipes',recipes)
+
   useEffect(() => {
     dispatch(getAllRecipes())
   }, [dispatch])
@@ -33,7 +33,7 @@ console.log('recipes',recipes)
   return (
     <div className='home-container'>
       <Nav class='navbar' setOrder={setOrder} setCurrentPage={setCurrentPage}/>
-      <div className='body-container'>
+      <div>
         {Object.keys(recipes).length < 1  ? <Loading/>:<div className='cards-container'>
           {recipes?.map((r) => (
             <div key={r.id}>

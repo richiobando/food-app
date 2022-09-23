@@ -1,10 +1,11 @@
 .home-container {
-  color: #fff;
-  background-color: #252120;
-  background-size: 20px 20px;
+  color: var(--secColor);
+  background-color: var(--bgColor);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 .cards-container {
-
   padding: 8vw;
   display: flex;
   display: grid;

@@ -43,7 +43,7 @@ export default function Nav({ setOrder,setCurrentPage }) {
   }
   return (
     <nav>
-      <Link className='button' to={'/home'}>
+      <Link className='button' to={'/home'} onClick={()=>setCurrentPage(0)} >
         Home
       </Link>
       <Link className='button' to={'/create'}>

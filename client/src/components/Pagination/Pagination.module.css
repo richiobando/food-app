@@ -4,3 +4,27 @@
   /* justify-content: center; */
   
 /* } */ 
+.buttonNormal{
+  border-style: none;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 28px 28px;
+  transition: 0.4s;
+  background: transparent;
+  color: #ccc;
+}
+.active{
+  border-style: none;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 28px 28px;
+  transition: 0.4s;
+  box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
+  -webkit-box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
+  -moz-box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
+  color: #282c34;
+}

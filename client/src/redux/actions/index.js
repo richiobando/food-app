@@ -17,7 +17,7 @@ export const getAllRecipes = () => {
       // const data = db.results
       // return dispatch({ type: GET_ALL_RECIPES, payload: data })
 
-      const data = await axios.get('http://localhost:3001/recipes')
+      const data = await axios.get('/recipes')
       return dispatch({ type: GET_ALL_RECIPES, payload: data.data })
     } catch (error) {
       console.error(error)
@@ -27,7 +27,7 @@ export const getAllRecipes = () => {
 export const getRecipeId = (id) => {
   return async (dispatch) => {
     try {
-      const data = await axios.get(`http://localhost:3001/recipes/${id}`)
+      const data = await axios.get(`/recipes/${id}`)
       return dispatch({ type: GET_RECIPE_ID, payload: data.data })
     } catch (error) {
       console.error(error)
@@ -36,14 +36,14 @@ export const getRecipeId = (id) => {
 }
 export const getDiets = (data) => {
   return async (dispatch) => {
-    const data = await axios.get(`http://localhost:3001/diets`)
+    const data = await axios.get(`/diets`)
     return dispatch({ type: GET_DIETS, payload: data.data })
   }
 }
 export const getRecipeName = (name) => {
   return async (dispatch) => {
     try {
-      const data = await axios(`http://localhost:3001/recipes?name=${name}`)
+      const data = await axios(`/recipes?name=${name}`)
       return dispatch({ type: GET_RECIPE_NAME, payload: data.data })
     } catch (error) {
       console.error(error)
@@ -59,7 +59,7 @@ export const orderRecipesBy = (data) => {
 export const createRecipe = (data) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:3001/recipes', data)
+      const response = await axios.post('/recipes', data)
       return dispatch({ type: CREATE_RECIPE, payload: response.data })
     } catch (error) {
       console.error(error)
@@ -70,7 +70,7 @@ export const createRecipe = (data) => {
 export const deleteRecipe = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(`http://localhost:3001/recipes/${id}`)
+      const response = await axios.delete(`/recipes/${id}`)
       return dispatch({ type: DELETE_RECIPE, payload: id })
     } catch (error) {
       console.error(error)

@@ -1,7 +1,7 @@
 .createBody {
   padding: 70px;
-  color: #fff;
-  background-color: #252120;
+  color: var(--secColor);
+  background-color: var(--bgColor);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,9 +16,9 @@
   color: #f00;
 }
 .createRecipe-container {
-  box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
-  -webkit-box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
-  -moz-box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
+  box-shadow: 10px 10px 67px 58px var(--secColor);
+  -webkit-box-shadow: 10px 10px 67px 58px var(--secColor);
+  -moz-box-shadow: 10px 10px 67px 58px var(--secColor);
   display: flex;
   flex-direction: column;
 
@@ -29,7 +29,7 @@
 .createRecipe-container input {
   font-family: sans-serif;
   padding: 10px;
-  background: #dcdcdc;
+  background: var(--secColor);
   border-style: none;
 }
 .createRecipe-container label {
@@ -37,17 +37,15 @@
   margin: 20px;
 }
 .createBody .button {
-  background: #252120;
+  background: var(--bgColor);
   width: 163px;
 }
 .createBody .create {
-  background: #dcdcdc;
-  color: #252120;
+  background: var(--secColor);
+  color: var(--bgColor);
   width: 163px;
 }
-.stepsCreated-container{
-  
-}
+
 .diets-container {
   display: flex;
   flex-wrap: wrap;
@@ -57,10 +55,10 @@
   margin-bottom: 30px;
 }
 .diets-container .diet-tag {
-  background: #c5c3c3;
+  background: var(--secColor);
   margin: 15px;
   cursor: pointer;
-  color: #252120;
+  color: var(--bgColor);
   display: inline;
   padding: 0 5px;
   border-radius: 5px;
@@ -69,20 +67,45 @@
   background: #e33;
   margin: 15px;
   cursor: pointer;
-  color: #fff;
+  color: var(--secColor);
   display: inline;
   padding: 0 5px;
   border-radius: 5px;
 }
 
 .step-button {
-  padding: 5px;
-  border: 1px solid #000;
+  border-style: none;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  background: transparent;
+  cursor: pointer;
+  color: #ccc;
+  padding: 12px 28px;
+  height: max;
+  transition: 0.4s;
+}
+.step-button:hover {
+  box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
+  -webkit-box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
+  -moz-box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
+  color: #282c34;
 }
 .createdStep {
   display: flex;
-  justify-content: center;
+}
+.createdStep input{
+  height: fit-content;
 }
 .image-container img {
   width: 400px;
+}
+.alert{
+  position: absolute;
+  background: #000a;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

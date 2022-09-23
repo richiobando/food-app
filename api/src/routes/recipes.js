@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
       steps,
     })
     const allDiets = await Diet.findAll({ where: { name: diets } })
-    console.log('allDiets', allDiets)
+
     newRecipe.addDiet(allDiets)
     res.json(newRecipe)
   } catch (error) {

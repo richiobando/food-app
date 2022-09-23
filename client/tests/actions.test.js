@@ -25,39 +25,3 @@ test('should dispatch type GET_ALL_RECIPES and payload the fetch of the link',  
   console.log(getAllRecipes())
   // expect(getAllRecipes).toBe({})
 })
-
-// describe('Actions', () => {
-// const mockStore = configureStore([thunk]);
-// const store = mockStore({ recipes: [] });
-// global.fetch = nodeFetch;
-// beforeEach(() => {
-//   store.clearActions();
-
-//   // Se Mockea las request a las api
-//   const apiMock = nock("http://localhost:3001").persist();
-
-//   // "/recipes" => Retorna la propiedad movies del archivo data.json
-//   apiMock.get("/recipes").reply(200, data.recipes);
-
-//   // "/recipes/:id" => Retorna una recipe matcheado por su id
-//   let id = null;
-//   apiMock
-//     .get((uri) => {
-//       id = Number(uri.split("/").pop()); // Number('undefined') => NaN
-//       return !!id;
-//     })
-//     .reply(200, (uri, requestBody) => {
-//       return data.recipes.find((recipe) => recipe.id === id) || {};
-//     });
-// });
-
-// afterEach(() => {
-//   nock.cleanAll();
-// });
-
-//   describe('getAllRecipe', () => {
-//     test('should dispatch type GET_ALL_RECIPES and payload the fetch of the link', async () => {
-//       expect(getAllRecipes).toBe({})
-//     })
-//   })
-// })

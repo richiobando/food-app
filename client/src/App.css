@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 a {
   color: inherit;
@@ -17,6 +20,7 @@ a {
   font-size: 1rem;
   font-weight: bolder;
   background: transparent;
+  cursor: pointer;
   color: #ccc;
   padding: 28px 28px;
   transition: 0.4s;
@@ -29,7 +33,7 @@ a {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--bgColor);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

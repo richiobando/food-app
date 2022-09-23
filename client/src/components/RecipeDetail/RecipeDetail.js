@@ -28,18 +28,24 @@ export default function RecipeDetail() {
             className='summary'
             dangerouslySetInnerHTML={{ __html: recipeDetail.summary }}
           />
-          <ul>
+          <ol>
             {recipeDetail.steps !== undefined
               ? recipeDetail.steps?.map((r) => <li key={r}>{r}</li>)
               : []}
-          </ul>
-          <small>{recipeDetail.healthScore}</small>
-          <p>{recipeDetail.dishTypes}</p>
-          <p>
-            {recipeDetail.diets?.map((d, i) => (
-              <b key={i}>{d}</b>
+            </ol>
+            <p>Health Score: {recipeDetail.healthScore}</p>
+          <div>
+            {recipeDetail.dishTypes?.map((t, i) => (
+              <p key={i} className='tag type'>{t}</p>
             ))}
-          </p>
+          </div>
+          <div className='diets-container'>
+            {recipeDetail.diets?.map((d, i) => (
+              <p className='tag diet' key={i}>
+                {d}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
       <button className='button' onClick={() => history.goBack()}>

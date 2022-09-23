@@ -3,9 +3,9 @@
 }
 
 .container {
-  box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
-  -webkit-box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
-  -moz-box-shadow: 10px 10px 67px 58px rgba(255, 255, 255, 0.68);
+  box-shadow: 10px 10px 67px 58px var(--secColor);
+  -webkit-box-shadow: 10px 10px 67px 58px var(--secColor);
+  -moz-box-shadow: 10px 10px 67px 58px var(--secColor);
   background: transparent;
   display: flex;
   align-items: center;
@@ -13,7 +13,7 @@
   flex-direction: column;
 }
 .imgContainer {
-  background: #c4c4c3;
+  background: var(--secColor);
   height: calc(1vw + var(--c));
   width: calc(1vw + var(--c));
   display: flex;
@@ -41,7 +41,7 @@
 }
 .dietTag {
   background: #e33;
-  color: #fff;
+  color: var(--secColor);
   display: inline-block;
   margin: 10px;
   padding: 0 10px;
