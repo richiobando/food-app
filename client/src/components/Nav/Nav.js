@@ -11,7 +11,7 @@ import './Nav.css'
 import searchIcon from "../../img/search-icon.png";
 
 
-export default function Nav({ setOrder }) {
+export default function Nav({ setOrder,setCurrentPage }) {
   const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   const [active, setActive] = useState(false)
@@ -23,10 +23,10 @@ export default function Nav({ setOrder }) {
   }, [dispatch])
 
   const handleSearch = (e) => {
-    console.log('serac por nombre')
     e.preventDefault()
     dispatch(getRecipeName(search))
     setOrder(e.target.value)
+    setCurrentPage(0)
     setSearch('')
   }
   const handleInputChange = (e) => {
@@ -43,8 +43,8 @@ export default function Nav({ setOrder }) {
   }
   return (
     <nav>
-      <Link className='button' to={'/'}>
-        Start
+      <Link className='button' to={'/home'}>
+        Home
       </Link>
       <Link className='button' to={'/create'}>
         Create Recipe
@@ -53,7 +53,7 @@ export default function Nav({ setOrder }) {
     
       {/* Alphabetical order */}
       <select className='button select' onChange={(e) => handleOrder(e)}>
-        <option value=''>Order</option>
+        <option value='initial'>Order</option>
         <option value='A-Z'>A-Z</option>
         <option value='Z-A'>Z-A</option>
         <option value='L-H'>Low-High Health Score</option>

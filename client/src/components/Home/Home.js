@@ -7,6 +7,7 @@ import RecipeCard from '../RecipeCard/RecipeCard'
 import Pagination from '../Pagination/Pagination'
 import Footer from '../Footer/Footer'
 import { getAllRecipes } from '../../redux/actions'
+import Loading from '../Loading/Loading'
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -20,23 +21,25 @@ export default function Home() {
     currentPage,
     currentPage + recipesPerPage
   )
-
+console.log('recipes',recipes)
   useEffect(() => {
     dispatch(getAllRecipes())
   }, [dispatch])
 
-  const handleNumberClick = (pageNumber) =>
-    setCurrentPage(pageNumber * recipesPerPage)
+  const handleNumberClick = (pageNumber) => {
+    console.log('pageNumber',pageNumber)
+    setCurrentPage(pageNumber * recipesPerPage)}
 
   return (
     <div className='home-container'>
-      <Nav class='navbar' setOrder={setOrder} />
+      <Nav class='navbar' setOrder={setOrder} setCurrentPage={setCurrentPage}/>
       <div className='body-container'>
-        <div className='cards-container'>
+        {Object.keys(recipes).length < 1  ? <Loading/>:<div className='cards-container'>
           {recipes?.map((r) => (
             <div key={r.id}>
               <RecipeCard
                 id={r.id}
+                created={r.created}
                 image={r.image}
                 name={r.title}
                 diet={r.diets}
@@ -52,9 +55,8 @@ export default function Home() {
               RecipesNumber={receivedStateRecipes.length / recipesPerPage}
             />
           </div>
-        </div>
+        </div>}
       </div>
-
       <Footer />
     </div>
   )

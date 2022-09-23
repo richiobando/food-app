@@ -14,11 +14,11 @@ export const DELETE_RECIPE = 'DELETE_RECIPE'
 export const getAllRecipes = () => {
   return async (dispatch) => {
     try {
-      const data = db.results
-      return dispatch({ type: GET_ALL_RECIPES, payload: data })
+      // const data = db.results
+      // return dispatch({ type: GET_ALL_RECIPES, payload: data })
 
-      // const data = await axios.get('http://localhost:3001/recipes')
-      // return dispatch({ type: GET_ALL_RECIPES, payload: data.data })
+      const data = await axios.get('http://localhost:3001/recipes')
+      return dispatch({ type: GET_ALL_RECIPES, payload: data.data })
     } catch (error) {
       console.error(error)
     }
@@ -60,7 +60,7 @@ export const createRecipe = (data) => {
   return async (dispatch) => {
     try {
       const response = await axios.post('http://localhost:3001/recipes', data)
-      return dispatch({ type: CREATE_RECIPE, payload: response })
+      return dispatch({ type: CREATE_RECIPE, payload: response.data })
     } catch (error) {
       console.error(error)
     }
@@ -68,8 +68,13 @@ export const createRecipe = (data) => {
 }
 
 export const deleteRecipe = (id) => {
-  return (dispatch) => {
-    return dispatch({ type: DELETE_RECIPE, payload: id })
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(`http://localhost:3001/recipes/${id}`)
+      return dispatch({ type: DELETE_RECIPE, payload: id })
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 

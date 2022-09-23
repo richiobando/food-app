@@ -80,7 +80,7 @@ const rootReducer = (state = initialState, action) => {
       })
       return {
         ...state,
-        recipesModified: values,
+        recipesModified: action.payload === 'initial' ? state.recipes : values,
       }
     case ORDER_HEALTHSCORE:
       const valuesOrderHealthScore = [...state.recipesModified]
@@ -98,7 +98,9 @@ const rootReducer = (state = initialState, action) => {
     case DELETE_RECIPE:
       return {
         ...state,
-        recipes: state.recipes.filter((r) => r.id !== action.payload),
+        recipesModified: state.recipesModified.filter(
+          (r) => r.id !== action.payload
+        ),
       }
 
     default:

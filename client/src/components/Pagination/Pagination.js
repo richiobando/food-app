@@ -11,21 +11,25 @@ export default function Pagination({
     setCurrentPage(0)
   }
   const handleLast = () => {
-    setCurrentPage(pagesNumber)
+    setCurrentPage((pagesNumber-1)*9)
   }
 
   const handlePrev = () => {
     if (currentPage > 0) {
-      setCurrentPage(currentPage - 1)
+      return setCurrentPage(currentPage - 1)
     }
+    return setCurrentPage(currentPage)
   }
   const handleNext = () => {
     if (currentPage !== pagesNumber) {
-      setCurrentPage(currentPage + 1)
+      return setCurrentPage(currentPage + 1)
     }
+    return setCurrentPage(currentPage)
   }
-
-  const pages = Array(pagesNumber).fill(1)
+  console.log('pagesNumber',pagesNumber)
+  console.log('currentPage', currentPage)
+  
+  const pages = Array(pagesNumber).fill(0)
   return (
     <div className={s.container}>
       <button className='button' onClick={handleFirst}>

@@ -28,9 +28,17 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-	defaultValue:'https://you.com/proxy?url=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.kpBaxa4s7jsRuU9A0CorKwHaHa%26w%3D690%26c%3D7%26pid%3DApi%26p%3D0'
+        defaultValue: 'https://cutt.ly/oVxg2rd',
+      },
+      created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
     },
-    { timestamps: false }
+    {
+      timestamps: false,
+      createdAt: false,
+      updatedAt: false,
+    }
   )
 }

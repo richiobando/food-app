@@ -12,20 +12,21 @@ const initialInputState = {
   // diets: ['Vegan', 'Vegetarian', 'Ovo-Vegetarian'],
   // image: '',
 
-  title: "",
-  image: "",
+  title: '',
+  image: '',
   healthScore: 0,
-  summary: "",
+  summary: '',
   diets: [],
-  steps: [],
-  image:'https://cutt.ly/oVxg2rd',
+  steps: [''],
+  image: 'https://cutt.ly/oVxg2rd',
   healthScore: 2,
 }
 export const validate = ({ name, value }) => {
   const regExNumber = new RegExp('[0-9]', 'gi')
 
   if (regExNumber.test(value) && name === 'title') return `can't use numbers`
-  if ( name === 'healthScore'&& value<100) return `Use number between 1 and 100`
+  if (name === 'healthScore' && value < 100)
+    return `Use number between 1 and 100`
 }
 
 export default function CreateRecipe() {
@@ -44,8 +45,7 @@ export default function CreateRecipe() {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(createRecipe(input))
-    console.log('hizo dispatch')
-    //history.push('/home)
+    history.push('/home')
   }
   const handleChange = (e, i) => {
     e.preventDefault()
@@ -77,17 +77,14 @@ export default function CreateRecipe() {
   }
 
   const handleDietClick = (val) => {
-    console.log('hola')
-    console.log('val,',val)
-    console.log('input.diets',input.diets);
-    const originalInput = {...input}
+    const originalInput = { ...input }
     if (input.diets.includes(val)) {
       const filtresDiets = originalInput.diets.filter((e) => e !== val)
       originalInput.diets = filtresDiets
-      return setInput({...originalInput})
+      return setInput({ ...originalInput })
     }
     originalInput.diets.push(val)
-    return setInput({...originalInput})
+    return setInput({ ...originalInput })
   }
 
   return (
@@ -133,40 +130,42 @@ export default function CreateRecipe() {
             )}
           </div>
           <label>Steps</label>
-          {console.log(input)}
-          {input.steps?.map((s, i) => (
-            <div className='createdStep' key={i}>
-              <input
-                required='required'
-                type='text'
-                name='steps'
-                value={input.steps[i]}
-                onChange={(e) => handleChange(e, i)}
-              />
-              {i === input.steps.length - 1 ? (
+
+          <div className='stepsCreated-container'>
+            {input.steps?.map((s, i) => (
+              <div className='createdStep' key={i}>
+                <input
+                  required='required'
+                  type='text'
+                  name='steps'
+                  value={input.steps[i]}
+                  onChange={(e) => handleChange(e, i)}
+                />
+                {i === input.steps.length - 1 ? (
+                  <p
+                    className='step-button'
+                    onClick={() => handleStepClick('add')}
+                  >
+                    Add Step
+                  </p>
+                ) : (
+                  false
+                )}
                 <p
                   className='step-button'
-                  onClick={() => handleStepClick('add')}
+                  onClick={() => handleStepClick('del', i)}
                 >
-                  Add Step
+                  Delete
                 </p>
-              ) : (
-                false
-              )}
-              <p
-                className='step-button'
-                onClick={() => handleStepClick('del', i)}
-              >
-                Delete
-              </p>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
           <div>
             <div className='diets-container'>
               {diets?.map((d, i) => (
                 <p
                   className={`diet-tag ${
-                    input.diets.includes(d.name)?'included':''
+                    input.diets.includes(d.name) ? 'included' : ''
                   }`}
                   key={i}
                   value={d.name}
@@ -177,7 +176,7 @@ export default function CreateRecipe() {
                 </p>
               ))}
             </div>
-            <div className="image-container">
+            <div className='image-container'>
               <img src={input.image} />
             </div>
           </div>
