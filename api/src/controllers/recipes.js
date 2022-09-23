@@ -4,7 +4,7 @@ const getApiData = async () => {
   try {
     const response = await axios.get(
       // `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
-      `https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`
+      `https://run.mocky.io/v3/d9ef196d-62a6-4abe-b3ab-b60676c3a4e7`
     )
     return response.data.results.map((data) => {
       return {
@@ -55,9 +55,11 @@ const getById = async (id) => {
     // search api by id
     try {
       const response = await axios.get(
-        `https://run.mocky.io/v3/bc5e86ae-bfdc-413d-94f6-383e6c86680d`
+        // `https://run.mocky.io/v3/bc5e86ae-bfdc-413d-94f6-383e6c86680d`
       ) // on recipe
-      // .get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
+        .get(
+        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+        )
       const data = response.data
       return {
         id: data.id,

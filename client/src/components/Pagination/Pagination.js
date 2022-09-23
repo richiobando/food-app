@@ -27,8 +27,6 @@ export default function Pagination({
     }
     return 
   }
-  console.log('pagesNumber',pagesNumber)
-  console.log('currentPage', currentPage)
   
   const pages = Array(pagesNumber+1).fill(0)
   return (

@@ -29,7 +29,10 @@ nav {
   padding: 10px;
   width: 350px;
 }
+form .searchIcon {
+  width: 10px;
 
+}
 .navigationForm .cancel {
   display: none;
 }
