@@ -1,5 +1,6 @@
 const axios = require('axios')
 const { Recipe, Diet } = require('../db')
+const { API_KEY } = process.env
 const getApiData = async () => {
   try {
     const response = await axios.get(
@@ -54,11 +55,12 @@ const getById = async (id) => {
   } else {
     // search api by id
     try {
-      const response = await axios.get(
+      const response = await axios
+        .get
         // `https://run.mocky.io/v3/bc5e86ae-bfdc-413d-94f6-383e6c86680d`
-      ) // on recipe
+        () // on recipe
         .get(
-        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+          `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
         )
       const data = response.data
       return {
@@ -98,4 +100,10 @@ const recipeDataJoined = async (id) => {
   return recipeDbData.concat(recipeApiData)
 }
 
-module.exports = { getById, recipeDataJoined, getDbInfo, getApiData,recipeDataJoined }
+module.exports = {
+  getById,
+  recipeDataJoined,
+  getDbInfo,
+  getApiData,
+  recipeDataJoined,
+}
