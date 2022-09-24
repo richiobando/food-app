@@ -24,9 +24,9 @@
   padding: 35px;
   background-color: var(--bgColor);
   display: flex;
-  flex-direction: column;
-  height: 800px;
-  width: 867px;
+  flex-direction: row;
+  height: 80%;
+  width: 80%;
   align-items: center;
   justify-content: center;
 }
@@ -60,6 +60,6 @@
   color: black;
 }
 .type{
-  /* background: ; */
+  background: rgb(2, 153, 2);
   color: black;
 }

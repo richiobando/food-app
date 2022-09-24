@@ -6,13 +6,13 @@ import {
   getRecipeName,
   orderRecipesBy,
   filterByDiet,
-  getCurrentPage,
+  setCurrentPage,
 } from '../../redux/actions'
 import './Nav.css'
 import searchIcon from '../../img/search-icon.png'
 import logo from '../../img/logo-main.png'
 
-export default function Nav({ setOrder, setCurrentPage }) {
+export default function Nav({ setOrder }) {
   const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   const [active, setActive] = useState(false)
@@ -27,8 +27,7 @@ export default function Nav({ setOrder, setCurrentPage }) {
     e.preventDefault()
     dispatch(getRecipeName(search))
     setOrder(e.target.value)
-    dispatch(getCurrentPage(0))
-    setCurrentPage(0)
+    dispatch(setCurrentPage(0))
     setSearch('')
   }
   const handleInputChange = (e) => {
@@ -45,7 +44,7 @@ export default function Nav({ setOrder, setCurrentPage }) {
   }
   return (
     <nav>
-      <Link className='button logo' to={'/home'} onClick={() => setCurrentPage(0)}>
+      <Link className='button logo' to={'/home'} onClick={() => dispatch(setCurrentPage(0))}>
         <img src={logo} alt="logo" />
       </Link>
       <Link className='button' to={'/create'}>

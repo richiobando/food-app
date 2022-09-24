@@ -11,7 +11,7 @@ a {
 
 .input {
   border-style: none;
-  border: 1px solid #ccc;
+  border: 1px solid var(--secColor);
   border-radius: 5px;
 }
 .button {
@@ -21,15 +21,13 @@ a {
   font-weight: bolder;
   background: transparent;
   cursor: pointer;
-  color: #fff;
+  color: var(--secColor);
   padding: 28px 28px;
   transition: 0.4s;
 }
 .button:hover {
-  box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
-  -webkit-box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
-  -moz-box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
-  color: #282c34;
+  background: var(--secColor);
+  color: var(--tagFont);
 }
 
 .App-header {
@@ -40,7 +38,7 @@ a {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--secColor);
 }
 
 .App-link {

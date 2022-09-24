@@ -96,7 +96,7 @@ export const cleanPage = (data) => {
     return dispatch({ type: CLEAN_PAGE, payload: data })
   }
 }
-export const getCurrentPage = (page) => {
+export const setCurrentPage = (page) => {
   return (dispatch) => {
     return dispatch({ type: CURRENT_PAGE, payload: page })
   }

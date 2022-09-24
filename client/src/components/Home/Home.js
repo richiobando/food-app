@@ -6,15 +6,16 @@ import Nav from '../Nav/Nav'
 import RecipeCard from '../RecipeCard/RecipeCard'
 import Pagination from '../Pagination/Pagination'
 import Footer from '../Footer/Footer'
-import { getAllRecipes,getCurrentPage } from '../../redux/actions'
+import { getAllRecipes,setCurrentPage } from '../../redux/actions'
 import Loading from '../Loading/Loading'
 
 export default function Home() {
   const dispatch = useDispatch()
   const receivedStateRecipes = useSelector((state) => state.recipesModified)
+  const currentPage = useSelector((state) => state.currentPage)
 
   const [, setOrder] = useState('')
-  const [currentPage, setCurrentPage] = useState(0)
+  // const [currentPage, setCurrentPage] = useState(0)
 
   const recipesPerPage = 9
   const recipes = receivedStateRecipes?.slice(
@@ -28,11 +29,11 @@ console.log('recipes',recipes)
 
   const handleNumberClick = (pageNumber) => {
     console.log('pageNumber',pageNumber)
-    setCurrentPage(pageNumber * recipesPerPage)}
+    dispatch( setCurrentPage(pageNumber * recipesPerPage))}
 
   return (
     <div className='home-container'>
-      <Nav class='navbar' setOrder={setOrder} setCurrentPage={setCurrentPage}/>
+      <Nav class='navbar' setOrder={setOrder} />
       <div>
         {Object.keys(recipes).length < 1  ? <Loading/>:<div className='cards-container'>
           {recipes?.map((r) => (

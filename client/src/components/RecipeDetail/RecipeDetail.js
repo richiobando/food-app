@@ -22,29 +22,33 @@ export default function RecipeDetail() {
     <div className='detailBody'>
       <div className='recipeDetail'>
         <div className='recipeDetail-container'>
-          <h1>{recipeDetail.title}</h1>
-          <img src={recipeDetail.image} alt={recipeDetail.title} />
-          <p
-            className='summary'
-            dangerouslySetInnerHTML={{ __html: recipeDetail.summary }}
-          />
-          <ol>
-            {recipeDetail.steps !== undefined
-              ? recipeDetail.steps?.map((r) => <li key={r}>{r}</li>)
-              : []}
-            </ol>
-            <p>Health Score: {recipeDetail.healthScore}</p>
           <div>
-            {recipeDetail.dishTypes?.map((t, i) => (
-              <p key={i} className='tag type'>{t}</p>
-            ))}
+            <h1>{recipeDetail.title}</h1>
+            <img src={recipeDetail.image} alt={recipeDetail.title} />
           </div>
-          <div className='diets-container'>
-            {recipeDetail.diets?.map((d, i) => (
-              <p className='tag diet' key={i}>
-                {d}
-              </p>
-            ))}
+          <div>
+            <p
+              className='summary'
+              dangerouslySetInnerHTML={{ __html: recipeDetail.summary }}
+            />
+            <ol>
+              {recipeDetail.steps !== undefined
+                ? recipeDetail.steps?.map((r) => <li key={r}>{r}</li>)
+                : []}
+              </ol>
+              <p>Health Score: {recipeDetail.healthScore}</p>
+            <div>
+              {recipeDetail.dishTypes?.map((t, i) => (
+                <p key={i} className='tag type'>{t}</p>
+              ))}
+            </div>
+            <div className='diets-container'>
+              {recipeDetail.diets?.map((d, i) => (
+                <p className='tag diet' key={i}>
+                  {d}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
