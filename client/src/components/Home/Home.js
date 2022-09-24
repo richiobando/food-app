@@ -6,7 +6,7 @@ import Nav from '../Nav/Nav'
 import RecipeCard from '../RecipeCard/RecipeCard'
 import Pagination from '../Pagination/Pagination'
 import Footer from '../Footer/Footer'
-import { getAllRecipes } from '../../redux/actions'
+import { getAllRecipes,getCurrentPage } from '../../redux/actions'
 import Loading from '../Loading/Loading'
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
     currentPage,
     currentPage + recipesPerPage
   )
-
+console.log('recipes',recipes)
   useEffect(() => {
     dispatch(getAllRecipes())
   }, [dispatch])

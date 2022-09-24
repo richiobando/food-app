@@ -3,10 +3,8 @@
 }
 
 .container {
-  box-shadow: 10px 10px 67px 58px var(--secColor);
-  -webkit-box-shadow: 10px 10px 67px 58px var(--secColor);
-  -moz-box-shadow: 10px 10px 67px 58px var(--secColor);
-  background: transparent;
+  background-color: var(--bgColor);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +29,7 @@
 
 .container:hover {
   transition: 0.3s;
-  background-color: transparent;
+  background: rgb(122, 72, 5);
   box-shadow: none;
 }
 .dietsContainer {
@@ -40,10 +38,10 @@
   justify-content: space-around;
 }
 .dietTag {
-  background: #e33;
-  color: var(--secColor);
+  background: var(--tagBg);
+  color: var(--tagFont);
   display: inline-block;
   margin: 10px;
-  padding: 0 10px;
-  border-radius: 5px;
+  padding: 1px 5px;
+  border-radius: 3px;
 }

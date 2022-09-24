@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { getRecipeId } from '../../redux/actions'
+import { getRecipeId,cleanPage } from '../../redux/actions'
 import Loading from '../Loading/Loading'
 import './RecipeDetail.css'
 
@@ -9,10 +9,10 @@ export default function RecipeDetail() {
   const { id } = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
-  // const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     dispatch(getRecipeId(id))
+    return ()=>dispatch(cleanPage())
   }, [dispatch, id])
   const recipeDetail = useSelector((state) => state.recipeDetail)
 
@@ -48,7 +48,9 @@ export default function RecipeDetail() {
           </div>
         </div>
       </div>
-      <button className='button' onClick={() => history.goBack()}>
+        <button className='button' onClick={() => {
+          history.goBack()
+        }}>
         BACK
       </button>
     </div>

@@ -3,6 +3,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--tagSecBg);
 }
 
 .navigationForm {
@@ -20,7 +21,6 @@ nav {
   transition: all 2s;
 }
 .navigationForm .text.active {
-  background: #c5c3c3;
   display: inline;
   border-style: none;
   position: relative;
@@ -38,8 +38,12 @@ form .searchIcon {
 }
 .navigationForm img {
   width: 30px;
-  filter:contrast(0)
+  filter: invert(1);
 }
 .navigationForm .cancel.active {
   display: inline;
+}
+.logo img{
+  height: 80px;
+  background-size:80px;
 }

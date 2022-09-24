@@ -10,6 +10,8 @@ export const ORDER_HEALTHSCORE = 'ORDER_HEALTHSCORE'
 export const CREATE_RECIPE = 'CREATE_RECIPE'
 export const FILTER_BY_DIET = 'FILTER_BY_DIET'
 export const DELETE_RECIPE = 'DELETE_RECIPE'
+export const CLEAN_PAGE = 'CLEAN_PAGE'
+export const CURRENT_PAGE = 'CURRENT_PAGE'
 
 export const getAllRecipes = () => {
   return async (dispatch) => {
@@ -87,5 +89,15 @@ export const filterByDiet = (diet) => {
 export const orderByHealthScore = (data) => {
   return (dispatch) => {
     return dispatch({ type: ORDER_HEALTHSCORE, payload: data })
+  }
+}
+export const cleanPage = (data) => {
+  return (dispatch) => {
+    return dispatch({ type: CLEAN_PAGE, payload: data })
+  }
+}
+export const getCurrentPage = (page) => {
+  return (dispatch) => {
+    return dispatch({ type: CURRENT_PAGE, payload: page })
   }
 }

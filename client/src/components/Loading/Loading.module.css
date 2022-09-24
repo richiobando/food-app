@@ -37,7 +37,7 @@
 .loading::after {
   position: absolute;
   content: '';
-  background: #fff;
+  background: #000;
   width: 270px;
   height: 270px;
   border-radius: 50%;

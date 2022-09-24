@@ -6,8 +6,9 @@
 }
 
 .detailBody {
+  background-color: var(--bgPrimary);
   color: var(--secColor);
-  background-color: var(--bgColor);
+  
   height: 100vh;
   display: flex;
   align-items: center;
@@ -20,9 +21,8 @@
   justify-content: center;
 }
 .recipeDetail-container {
-  box-shadow: 10px 10px 67px 58px var(--secColor);
-  -webkit-box-shadow: 10px 10px 67px 58px var(--secColor);
-  -moz-box-shadow: 10px 10px 67px 58px var(--secColor);
+  padding: 35px;
+  background-color: var(--bgColor);
   display: flex;
   flex-direction: column;
   height: 800px;
@@ -32,7 +32,12 @@
 }
 
 .detailBody .button {
-  background: var(--bgColor);
+  background: var(--secColor);
+  color: var(--bgColor);
+}
+.detailBody .summary {
+  line-height: 1.5;
+  font-size: 1.2em;
 }
 
 .diets-container {
@@ -47,12 +52,14 @@
   margin: 15px;
   color: var(--secColor);
   display: inline;
-  padding: 0 5px;
-  border-radius: 5px;
+  padding: 1px 5px;
+  border-radius: 3px;
 }
 .diet{
-  background: #e33;
+  background: var(--tagBg);
+  color: black;
 }
 .type{
-  background: rgb(238, 132, 51);
+  /* background: ; */
+  color: black;
 }

@@ -15,6 +15,12 @@
   background: transparent;
   color: #ccc;
 }
+.buttonNormal:hover{
+  border-style: none;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+}
 .active{
   border-style: none;
   font-family: sans-serif;
@@ -23,8 +29,6 @@
   cursor: pointer;
   padding: 28px 28px;
   transition: 0.4s;
-  box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
-  -webkit-box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
-  -moz-box-shadow: 10px 10px 117px 64px #c5c3c3 inset;
+  background: var(--tagBg);
   color: #282c34;
 }

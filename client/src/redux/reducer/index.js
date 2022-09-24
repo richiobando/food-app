@@ -8,6 +8,8 @@ import {
   CREATE_RECIPE,
   DELETE_RECIPE,
   FILTER_BY_DIET,
+  CLEAN_PAGE,
+  CURRENT_PAGE,
 } from '../actions'
 // import actions from '../actions'
 
@@ -16,6 +18,7 @@ const initialState = {
   recipesModified: [],
   recipeDetail: {},
   diets: [],
+  currentPage: 0,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -101,6 +104,16 @@ const rootReducer = (state = initialState, action) => {
         recipesModified: state.recipesModified.filter(
           (r) => r.id !== action.payload
         ),
+      }
+    case CLEAN_PAGE:
+      return {
+        ...state,
+        recipeDetail: {},
+      }
+    case CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage:action.payload,
       }
 
     default:

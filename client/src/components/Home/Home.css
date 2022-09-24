@@ -1,6 +1,6 @@
 .home-container {
   color: var(--secColor);
-  background-color: var(--bgColor);
+  background-color: var(--bgPrimary);
   box-sizing: border-box;
   padding: 0;
   margin: 0;

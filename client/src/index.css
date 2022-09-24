@@ -1,13 +1,17 @@
-:root{
-  --bgColor:#252120;
-  --secColor:#c5c3c3;
+:root {
+  --bgPrimary: #000;
+  --bgColor: #252120;
+  --secColor: #fff;
+  --tagBg: rgb(255, 149, 0);
+  --tagSecBg: rgb(177, 100, 41);
+  --tagFont: #252120;
 }
 body {
   margin: 0;
   padding: 0;
-  background: var(--bgColor);
+  background: var(--bgPrimary);
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

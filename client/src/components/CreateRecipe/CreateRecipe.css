@@ -1,13 +1,14 @@
 .createBody {
   padding: 70px;
   color: var(--secColor);
-  background-color: var(--bgColor);
+  background-color: var(--bgPrimary);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 .createRecipe {
+  background-color: var(--bgColor);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,9 +17,6 @@
   color: #f00;
 }
 .createRecipe-container {
-  box-shadow: 10px 10px 67px 58px var(--secColor);
-  -webkit-box-shadow: 10px 10px 67px 58px var(--secColor);
-  -moz-box-shadow: 10px 10px 67px 58px var(--secColor);
   display: flex;
   flex-direction: column;
 
@@ -41,6 +39,7 @@
   width: 163px;
 }
 .createBody .create {
+  margin: 10px;
   background: var(--secColor);
   color: var(--bgColor);
   width: 163px;
@@ -60,17 +59,17 @@
   cursor: pointer;
   color: var(--bgColor);
   display: inline;
-  padding: 0 5px;
-  border-radius: 5px;
+  padding: 1px 5px;
+  border-radius: 3px;
 }
 .diets-container .diet-tag.included {
-  background: #e33;
+  background: var(--tagBg);
   margin: 15px;
   cursor: pointer;
   color: var(--secColor);
   display: inline;
-  padding: 0 5px;
-  border-radius: 5px;
+  padding: 1px 5px;
+  border-radius: 3px;
 }
 
 .step-button {
