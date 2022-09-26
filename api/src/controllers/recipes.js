@@ -25,20 +25,18 @@ const getApiData = async () => {
       }
     })
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
-
 const getById = async (id) => {
   //search Data base by id
-  if (id.length > 15) {
+  const idString = id.toString()
+  if (idString.length > 15) {
     try {
       const recipeByID = await Recipe.findByPk(id, {
         include: {
-          include: {
-            model: Diet,
-            attributes: ['name'],
-          },
+          model: Diet,
+          attributes: ['name'],
         },
       })
       return {
@@ -46,12 +44,13 @@ const getById = async (id) => {
         title: recipeByID.title,
         summary: recipeByID.summary,
         healthScore: recipeByID.healthScore,
-        diets: recipeByID.diets,
+        diets: recipeByID.diets.map(d => d.name),
+        created:recipeByID.created,
         image: recipeByID.image,
         steps: recipeByID.steps,
       }
     } catch (error) {
-      console.error(error)
+      next(error)
     }
   } else {
     // search api by id
@@ -83,7 +82,7 @@ const getById = async (id) => {
             : [],
       }
     } catch (error) {
-      console.error(error)
+      next(error)
     }
   }
   //end api

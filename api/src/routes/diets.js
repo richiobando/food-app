@@ -18,7 +18,7 @@ const spoonDiets = [
 ]
 const router = Router()
 
-router.get('/', async (req, res) => {
+router.get('/', async ( req, res) => {
   try {
     const data = await Diet.findAll()
     if (data.length > 0) {
@@ -35,17 +35,18 @@ router.get('/', async (req, res) => {
       const diets = await Diet.findAll()
       return res.json(diets)
     }
-  } catch (error) {
-    console.log('dataError: ', e)
-    res.status(404).send(e)
+  } catch (e) {
+    console.error(e)
+    next()
   }
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ( req, res,next) => {
   const { id } = req.params
   Diet.destroy({ where: { id } })
     .then((data) => res.send(data))
-    .catch((e) => res.status(400).json(e))
+    .catch((e) => {console.error(e)
+      next()})
 })
 
 module.exports = router

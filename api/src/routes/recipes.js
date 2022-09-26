@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const router = Router()
 const { Recipe, Diet } = require('../db')
 
 const { API_KEY } = process.env
@@ -9,11 +10,8 @@ const {
   recipeDataJoined,
 } = require('../controllers/recipes')
 
-const router = Router()
-
-router.get('/', async (req, res) => {
+router.get('/', async ( req, res) => {
   const { name } = req.query
-  
   try {
     const allRecipes = await recipeDataJoined()
 
@@ -22,21 +20,28 @@ router.get('/', async (req, res) => {
     let flirtedRecipes = allRecipes.filter((r) =>
       r.title.toLowerCase().includes(name.toLowerCase())
     )
-
+    if (flirtedRecipes.length === 0) {
+      return res.status(404).json({ error: `${name} not found` })
+    }
     return res.json(flirtedRecipes)
   } catch (e) {
     console.error(e)
-    return res.status(404).json(e)
+    res.status(404).json(e)
   }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async ( req, res, next) => {
   const { id } = req.params
-  const recipeById = await getById(id)
-  res.json(recipeById)
+  try {
+    const recipeById = await getById(id)
+    res.json(recipeById)
+  } catch (e) {
+    console.error(e)
+    next()
+  }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', async ( req, res, next) => {
   try {
     const { title, summary, healthScore, steps, diets } = req.body
 
@@ -50,19 +55,20 @@ router.post('/', async (req, res) => {
 
     newRecipe.addDiet(allDiets)
     res.json(newRecipe)
-  } catch (error) {
-    console.error(error)
+  } catch (e) {
+    console.error(e)
+    next()
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async ( req, res, next) => {
   try {
     const { id } = req.params
-    const deletedRecipe = await Recipe.destroy({ where: { id } })
-    res.send(`recipe deletes id: ${id}`)
-    res.send(deletedRecipe)
+    await Recipe.destroy({ where: { id } })
+    res.send(`id: ${id} deleted successfully`)
   } catch (error) {
-    res.status(400).json(error)
+    console.error(e)
+    next()
   }
 })
 
