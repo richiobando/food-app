@@ -43,7 +43,7 @@ const rootReducer = (state = initialState, action) => {
 
     // // [action.payload.prop]
     case FILTER_BY_DIET:
-      const originalRecipes = [...state.recipes]
+      const originalRecipes = [...state.recipesModified]
       console.log('diets', originalRecipes)
       console.log('action.payload', action.payload)
       console.log('recipesFilter.diets', originalRecipes[0].diets)

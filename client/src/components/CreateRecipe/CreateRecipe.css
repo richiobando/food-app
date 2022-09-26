@@ -1,6 +1,6 @@
 .createBody {
   padding: 70px;
-  color: var(--secColor);
+  color: var(--fontColor);
   background-color: var(--bgPrimary);
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@
 .createRecipe-container input {
   font-family: sans-serif;
   padding: 10px;
-  background: var(--secColor);
+  background: var(--buttonHover);
   border-style: none;
 }
 .createRecipe-container label {
@@ -38,9 +38,8 @@
   background: var(--bgColor);
   width: 163px;
 }
-.createBody .create {
-  margin: 10px;
-  background: var(--secColor);
+.createBody .button:hover {
+  background: var(--fontColor);
   color: var(--bgColor);
   width: 163px;
 }
@@ -54,10 +53,10 @@
   margin-bottom: 30px;
 }
 .diets-container .diet-tag {
-  background: var(--secColor);
+  background: var(--buttonHover);
   margin: 15px;
   cursor: pointer;
-  color: var(--bgColor);
+  color: var(--fontTag);
   display: inline;
   padding: 1px 5px;
   border-radius: 3px;
@@ -66,7 +65,7 @@
   background: var(--tagBg);
   margin: 15px;
   cursor: pointer;
-  color: var(--secColor);
+  color: var(--fontColor);
   display: inline;
   padding: 1px 5px;
   border-radius: 3px;
@@ -79,7 +78,7 @@
   font-weight: bolder;
   background: transparent;
   cursor: pointer;
-  color: #ccc;
+  color: var(--buttonFont);
   padding: 12px 28px;
   height: max;
   transition: 0.4s;
@@ -92,18 +91,38 @@
 }
 .createdStep {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.createdStep input{
+.createdStep input {
   height: fit-content;
 }
 .image-container img {
   width: 400px;
 }
-.alert{
+.createBody .create {
+  margin: 10px;
+  background: var(--fontColor);
+  color: var(--bgColor);
+  width: 163px;
+}
+.createBody .create:hover {
+  background: var(--bgColor);
+  color: var(--fontColor);
+}
+.alert {
   position: absolute;
-  background: #000a;
+  background: #0005;
   height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alert-container {
+  background: var(--buttonFont);
+  height: 50%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

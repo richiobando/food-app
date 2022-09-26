@@ -13,12 +13,12 @@
   padding: 28px 28px;
   transition: 0.4s;
   background: transparent;
-  color: #ccc;
+  color: var(--buttonFont);
 }
 .buttonNormal:hover{
   border-style: none;
   cursor: pointer;
-  background: #fff;
+  background: var(--tagSecBg);
   color: #000;
 }
 .active{

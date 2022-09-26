@@ -11,23 +11,23 @@ a {
 
 .input {
   border-style: none;
-  border: 1px solid var(--secColor);
+  border: 1px solid var(--buttonHover);
   border-radius: 5px;
 }
 .button {
   border-style: none;
   font-family: sans-serif;
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: bolder;
   background: transparent;
   cursor: pointer;
-  color: var(--secColor);
+  color: var(--buttonFont);
   padding: 28px 28px;
   transition: 0.4s;
 }
 .button:hover {
-  background: var(--secColor);
-  color: var(--tagFont);
+  background: var(--buttonHover);
+  color: var(--fontTag);
 }
 
 .App-header {
@@ -38,7 +38,7 @@ a {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: var(--secColor);
+  color: var(--fontColor);
 }
 
 .App-link {

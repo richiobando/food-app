@@ -95,8 +95,10 @@ export default function CreateRecipe() {
     <div>
       {alert && (
         <div className='alert'>
-          <p>Please correct the information before send</p>
-          <button className='button' onClick={()=>setAlert(false)}>Ok</button>
+          <div className='alert-container'>
+            <p>Please correct the information before send</p>
+            <button className='button' onClick={()=>setAlert(false)}>Ok</button>
+          </div>
         </div>
       )}
       <div className='createBody'>

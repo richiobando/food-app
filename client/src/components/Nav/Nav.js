@@ -25,8 +25,9 @@ export default function Nav({ setOrder }) {
 
   const handleSearch = (e) => {
     e.preventDefault()
+    console.log('search',search)
     dispatch(getRecipeName(search))
-    setOrder(e.target.value)
+    setOrder('')
     dispatch(setCurrentPage(0))
     setSearch('')
   }
@@ -37,14 +38,14 @@ export default function Nav({ setOrder }) {
 
   const handleOrder = (e) => {
     dispatch(orderRecipesBy(e.target.value))
-    setOrder(e.target.value)
+    setOrder('')
   }
   const handleChosenDiet = (e) => {
     dispatch(filterByDiet(e.target.value.toLowerCase()))
   }
   return (
     <nav>
-      <Link className='button logo' to={'/home'} onClick={() => dispatch(setCurrentPage(0))}>
+      <Link className='button logo' to={'/home'} onClick={(e) => setOrder('reset')}>
         <img src={logo} alt="logo" />
       </Link>
       <Link className='button' to={'/create'}>
@@ -80,12 +81,11 @@ export default function Nav({ setOrder }) {
             placeholder='Search Recipes'
           />
           {active === true ? (
-            <div className='button'>search</div>
+            <button type='submit' className='button'>Search</button>
           ) : (
             <img
               src={searchIcon}
               className={`searchIcon button ${active === true && 'active'}`}
-              type='submit'
               onClick={() => setActive(true)}
             />
           )}
@@ -97,6 +97,7 @@ export default function Nav({ setOrder }) {
           </i>
         </form>
       </ul>
+      
     </nav>
   )
 }

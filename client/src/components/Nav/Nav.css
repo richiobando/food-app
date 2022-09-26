@@ -40,6 +40,9 @@ form .searchIcon {
   width: 30px;
   filter: invert(1);
 }
+.navigationForm img:hover {
+  filter: invert(0);
+}
 .navigationForm .cancel.active {
   display: inline;
 }

@@ -5,7 +5,7 @@
   align-items: center;
 }
 .loading {
-  background: #000;
+  background: var(--bgPrimary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@
   transform: rotate(45deg);
   top: 0;
   left: 0;
-  background: #fff;
+  background: var(--fontColor);
 }
 @keyframes animate {
   0% {
@@ -37,7 +37,7 @@
 .loading::after {
   position: absolute;
   content: '';
-  background: #000;
+  background: var(--bgPrimary);
   width: 270px;
   height: 270px;
   border-radius: 50%;

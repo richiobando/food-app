@@ -14,22 +14,28 @@ export default function Home() {
   const receivedStateRecipes = useSelector((state) => state.recipesModified)
   const currentPage = useSelector((state) => state.currentPage)
 
-  const [, setOrder] = useState('')
-  // const [currentPage, setCurrentPage] = useState(0)
+  const [order, setOrder] = useState('')
 
   const recipesPerPage = 9
-  const recipes = receivedStateRecipes?.slice(
+  let recipes = receivedStateRecipes?.slice(
     currentPage,
     currentPage + recipesPerPage
   )
-console.log('recipes',recipes)
   useEffect(() => {
     dispatch(getAllRecipes())
   }, [dispatch])
 
+  useEffect(() => {
+    if (order === 'reset') {
+      recipes=[]
+      dispatch(setCurrentPage(0))
+      dispatch(getAllRecipes())
+    }
+  }, [order]);
+  
   const handleNumberClick = (pageNumber) => {
-    console.log('pageNumber',pageNumber)
-    dispatch( setCurrentPage(pageNumber * recipesPerPage))}
+    dispatch(setCurrentPage(pageNumber * recipesPerPage))
+  }
 
   return (
     <div className='home-container'>
@@ -53,6 +59,7 @@ console.log('recipes',recipes)
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
               handleNumberClick={handleNumberClick}
+              recipesPerPage={recipesPerPage}
               RecipesNumber={receivedStateRecipes.length / recipesPerPage}
             />
           </div>

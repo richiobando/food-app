@@ -52,6 +52,15 @@ svg {
   animation-duration: 4.5s;
   animation-timing-function: ease-out;
 }
+.content .textReveal:hover {
+  transform: scale(1.1);
+  font-family: serif;
+  clip-path: inset(0 0 0 0);
+  transition: all 1.5s;
+  animation-name: text-animation;
+  animation-duration: 4.5s;
+  animation-timing-function: ease-out;
+}
 
 @keyframes bg-animation {
   0% {

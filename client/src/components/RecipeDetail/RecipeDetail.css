@@ -6,9 +6,9 @@
 }
 
 .detailBody {
+  font-size: 0.8rem;
   background-color: var(--bgPrimary);
-  color: var(--secColor);
-  
+  color: var(--fontColor);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -16,23 +16,43 @@
   flex-direction: column;
 }
 .recipeDetail {
+  padding: 35px;
+  background-color: var(--bgColor);
+  height: 80%;
+  width: 80%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.recipeDetail-container {
-  padding: 35px;
-  background-color: var(--bgColor);
+.recipeDetail-title {
   display: flex;
   flex-direction: row;
-  height: 80%;
-  width: 80%;
+  
+  align-items: center;
+  justify-content: center;
+}
+.buttonDelete {
+  border-style: none;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  background: var(--tagSecBg);
+  cursor: pointer;
+  color: var(--fontColor);
+  padding: 15px 15px;
+  transition: 0.4s;
+}
+.recipeDetail-container {
+  display: flex;
+  flex-direction: row;
+  
   align-items: center;
   justify-content: center;
 }
 
 .detailBody .button {
-  background: var(--secColor);
+  background: var(--fontColor);
   color: var(--bgColor);
 }
 .detailBody .summary {
@@ -44,13 +64,12 @@
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-
   align-content: space-around;
   justify-content: center;
 }
 .tag {
   margin: 15px;
-  color: var(--secColor);
+  color: var(--fontColor);
   display: inline;
   padding: 1px 5px;
   border-radius: 3px;
@@ -60,6 +79,21 @@
   color: black;
 }
 .type{
-  background: rgb(2, 153, 2);
+  background: rgb(2, 192, 217);
   color: black;
+}
+.imageDetail {
+  display: none;
+  height: 150px;
+  position: relative;
+  top: -140px;
+}
+
+.buttonDelete:hover {
+  background: var(--buttonHover);
+  color: var(--fontTag);
+}
+
+.recipeDetail-content{
+  padding-left: 10px;
 }

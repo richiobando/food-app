@@ -5,13 +5,18 @@
 .container {
   background-color: var(--bgColor);
   border-radius: 10px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
+.container:hover {
+  transition: 0.3s;
+  background: rgb(122, 72, 5);
+}
 .imgContainer {
-  background: var(--secColor);
+  background: var(--fontColor);
   height: calc(1vw + var(--c));
   width: calc(1vw + var(--c));
   display: flex;
@@ -27,11 +32,6 @@
   transform: scale(0.8);
 }
 
-.container:hover {
-  transition: 0.3s;
-  background: rgb(122, 72, 5);
-  box-shadow: none;
-}
 .dietsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -39,7 +39,7 @@
 }
 .dietTag {
   background: var(--tagBg);
-  color: var(--tagFont);
+  color: var(--fontTag);
   display: inline-block;
   margin: 10px;
   padding: 1px 5px;

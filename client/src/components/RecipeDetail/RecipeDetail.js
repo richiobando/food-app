@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { getRecipeId,cleanPage } from '../../redux/actions'
+import { getRecipeId, cleanPage,updateRecipe, deleteRecipe } from '../../redux/actions'
 import Loading from '../Loading/Loading'
 import './RecipeDetail.css'
 
@@ -10,23 +10,54 @@ export default function RecipeDetail() {
   const dispatch = useDispatch()
   const history = useHistory()
 
+  const handleDelete = (id) => {
+    dispatch(deleteRecipe(id))
+    history.goBack()
+  }
+  const handleUpdate = (id) => {
+    dispatch(updateRecipe(id))
+    history.goBack()
+  }
+
   useEffect(() => {
     dispatch(getRecipeId(id))
-    return ()=>dispatch(cleanPage())
+    return () => dispatch(cleanPage())
   }, [dispatch, id])
   const recipeDetail = useSelector((state) => state.recipeDetail)
-
   return Object.keys(recipeDetail) < 1 ? (
     <Loading />
   ) : (
     <div className='detailBody'>
       <div className='recipeDetail'>
+        <div className='recipeDetail-title'>
+            <h1>{recipeDetail.title}</h1>
+          {recipeDetail?.created ? (<>
+              <button
+                className='buttonDelete'
+                onClick={() => handleDelete(recipeDetail.id)}
+              >
+                delete
+              </button>
+              <button
+                className='buttonDelete'
+                onClick={() => handleUpdate(recipeDetail.id)}
+              >
+                update
+              </button>
+          </>
+          ) : (
+            ''
+          )}
+        </div>
         <div className='recipeDetail-container'>
           <div>
-            <h1>{recipeDetail.title}</h1>
-            <img src={recipeDetail.image} alt={recipeDetail.title} />
+            <img
+              className='imageDetail'
+              src={recipeDetail.image}
+              alt={recipeDetail.title}
+            />
           </div>
-          <div>
+          <div className='recipeDetail-content'>
             <p
               className='summary'
               dangerouslySetInnerHTML={{ __html: recipeDetail.summary }}
@@ -35,13 +66,17 @@ export default function RecipeDetail() {
               {recipeDetail.steps !== undefined
                 ? recipeDetail.steps?.map((r) => <li key={r}>{r}</li>)
                 : []}
-              </ol>
-              <p>Health Score: {recipeDetail.healthScore}</p>
+            </ol>
+            <p>Health Score: {recipeDetail.healthScore}</p>
             <div>
+              <h3>Dish Types</h3>
               {recipeDetail.dishTypes?.map((t, i) => (
-                <p key={i} className='tag type'>{t}</p>
+                <p key={i} className='tag type'>
+                  {t}
+                </p>
               ))}
             </div>
+            <h3>Diets</h3>
             <div className='diets-container'>
               {recipeDetail.diets?.map((d, i) => (
                 <p className='tag diet' key={i}>
@@ -52,11 +87,15 @@ export default function RecipeDetail() {
           </div>
         </div>
       </div>
-        <button className='button' onClick={() => {
+      <button
+        className='button'
+        onClick={() => {
           history.goBack()
-        }}>
+        }}
+      >
         BACK
-      </button>
+        </button>
+        
     </div>
   )
 }

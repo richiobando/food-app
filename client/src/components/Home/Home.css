@@ -1,5 +1,5 @@
 .home-container {
-  color: var(--secColor);
+  color: var(--fontColor);
   background-color: var(--bgPrimary);
   box-sizing: border-box;
   padding: 0;
@@ -7,11 +7,9 @@
 }
 .cards-container {
   padding: 8vw;
-  display: flex;
   display: grid;
   grid-gap: 4vw;
-  grid-auto-flow: row dense;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
 

@@ -32,14 +32,19 @@ export const getRecipeId = (id) => {
       const data = await axios.get(`/recipes/${id}`)
       return dispatch({ type: GET_RECIPE_ID, payload: data.data })
     } catch (error) {
-      console.error(error)
+      
+      alert(error)
     }
   }
 }
 export const getDiets = (data) => {
   return async (dispatch) => {
-    const data = await axios.get(`/diets`)
-    return dispatch({ type: GET_DIETS, payload: data.data })
+    try {
+	const data = await axios.get(`/diets`)
+	    return dispatch({ type: GET_DIETS, payload: data.data })
+} catch (error) {
+	alert(error)
+}
   }
 }
 export const getRecipeName = (name) => {
@@ -48,7 +53,7 @@ export const getRecipeName = (name) => {
       const data = await axios(`/recipes?name=${name}`)
       return dispatch({ type: GET_RECIPE_NAME, payload: data.data })
     } catch (error) {
-      console.error(error)
+      alert(error)
     }
   }
 }
