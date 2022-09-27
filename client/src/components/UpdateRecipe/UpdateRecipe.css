@@ -112,7 +112,7 @@
 }
 .alert {
   position: absolute;
-  /* background: #0005; */
+  background: #0005;
   height: 100%;
   width: 100%;
   display: flex;
@@ -120,7 +120,9 @@
   justify-content: center;
 }
 .alert-container {
-  background: var(--fontColor);
+  background: var(--bgColor);
+  flex-direction: column;
+
   height: 50%;
   width: 50%;
   display: flex;

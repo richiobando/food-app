@@ -11,7 +11,7 @@ import Loading from '../Loading/Loading'
 
 export default function Home() {
   const dispatch = useDispatch()
-  const receivedStateRecipes = useSelector((state) => state.recipesModified)
+  let receivedStateRecipes = useSelector((state) => state.recipesModified)
   const currentPage = useSelector((state) => state.currentPage)
 
   const [order, setOrder] = useState('')
@@ -27,7 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     if (order === 'reset') {
-      recipes=[]
+      receivedStateRecipes=[]
       dispatch(setCurrentPage(0))
       dispatch(getAllRecipes())
     }

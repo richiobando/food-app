@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, {  useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
-import { getRecipeId, cleanPage,updateRecipe, deleteRecipe } from '../../redux/actions'
+import { useHistory, useParams,Link } from 'react-router-dom'
+import { getRecipeId, cleanPage, deleteRecipe } from '../../redux/actions'
 import Loading from '../Loading/Loading'
 import './RecipeDetail.css'
 
@@ -14,11 +14,7 @@ export default function RecipeDetail() {
     dispatch(deleteRecipe(id))
     history.goBack()
   }
-  const handleUpdate = (id) => {
-    dispatch(updateRecipe(id))
-    history.goBack()
-  }
-
+  
   useEffect(() => {
     dispatch(getRecipeId(id))
     return () => dispatch(cleanPage())
@@ -31,22 +27,22 @@ export default function RecipeDetail() {
       <div className='recipeDetail'>
         <div className='recipeDetail-title'>
             <h1>{recipeDetail.title}</h1>
-          {recipeDetail?.created ? (<>
+            {
+              false? (<> 
+              <Link
+                to={`/update/${recipeDetail.id}`}
+                className='buttonDelete'
+              >
+                Edit
+              </Link>
+          </>
+          ) : (
               <button
                 className='buttonDelete'
                 onClick={() => handleDelete(recipeDetail.id)}
               >
-                delete
+                Delete
               </button>
-              <button
-                className='buttonDelete'
-                onClick={() => handleUpdate(recipeDetail.id)}
-              >
-                update
-              </button>
-          </>
-          ) : (
-            ''
           )}
         </div>
         <div className='recipeDetail-container'>

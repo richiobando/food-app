@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { getDiets, createRecipe } from '../../redux/actions'
-import './CreateRecipe.css'
+import { useParams, useHistory, Link } from 'react-router-dom'
+import { getDiets, getRecipeId, updateRecipe } from '../../redux/actions'
+import './UpdateRecipe.css'
 
+export const validate = ({ name, value }) => {
+  const regExNumber = new RegExp(`[0-9]`, 'g')
+  const regExSymbols = new RegExp(`[^\\w\\s]`, 'g')
+
+  if ((regExNumber.test(value) || regExSymbols.test(value)) && name === 'title')
+    return `Only Use Letters`
+  if (name === 'healthScore' && value < 100)
+    return `Use number between 1 and 100`
+}
 const initialInputState = {
   title: '',
   image: '',
@@ -14,43 +23,37 @@ const initialInputState = {
   image: 'https://cutt.ly/oVxg2rd',
   healthScore: 2,
 }
-export const validate = ({ name, value },errors) => {
-  const regExNumber = new RegExp(`[0-9]`, 'g')
-  const regExSymbols = new RegExp(`[^\\w\\s]`, 'g')
-
-  if ((regExNumber.test(value) || regExSymbols.test(value)) && name === 'title'){
-    return {...errors,title:`Only Use Letters`}
-  }
-  if (name === 'healthScore' && value < 100)
-    return {...errors,healthScore:`Use number between 1 and 100`}
-}
-
-export default function CreateRecipe() {
+export default function UpdateDetail() {
+  const dispatch = useDispatch()
+  const recipeToUpdate = useSelector((state) => state.recipeDetail)
+  const diets = useSelector((state) => state.diets) ///////////////////////// diets
   const [input, setInput] = useState({
     ...initialInputState,
-    diets: [],
+    diets: [''],
     steps: [''],
   })
 
-  const [errors, setErrors] = useState({})
-  const [alert, setAlert] = useState(false)
-
-  const dispatch = useDispatch()
-  const diets = useSelector((state) => state.diets)
+  useEffect(() => {
+    setInput(recipeToUpdate)
+  }, [recipeToUpdate])
 
   useEffect(() => {
+    dispatch(getRecipeId(id))
     dispatch(getDiets())
-  }, [dispatch])
+  }, [dispatch,id])
+
+  const [errors, setErrors] = useState('')
+  const [alert, setAlert] = useState(false)
+  const { id } = useParams()
   const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
-    if (Object.keys(errors).some(e=>e!=='')) {
+    if (errors) {
       return setAlert(true)
     }
-    dispatch(createRecipe(input))
-    setInput(initialInputState)
+    dispatch(updateRecipe(input))
+    setInput(recipeToUpdate)
     history.push('/home')
   }
   const handleChange = (e, i) => {
@@ -111,7 +114,7 @@ export default function CreateRecipe() {
             className='createRecipe-container'
             onSubmit={(e) => handleSubmit(e)}
           >
-            <h1>Create Your Own Recipe</h1>
+            <h1>Update Your Recipe</h1>
             <div>
               <label>Title</label>
               <input
@@ -121,7 +124,7 @@ export default function CreateRecipe() {
                 value={input.title}
                 onChange={(e) => handleChange(e, 0)}
               />
-              {errors?.title && <p className='error'>{errors.title}</p>}
+              {errors && <p className='error'>{errors}</p>}
             </div>
             <div>
               <label>Summary</label>
@@ -148,7 +151,7 @@ export default function CreateRecipe() {
             </div>
             <label>Steps</label>
             <ol className='stepsCreated-container'>
-              {input.steps.length === 0 && (
+              {input.steps?.length === 0 && (
                 <p
                   className='step-button'
                   onClick={() => handleStepClick('add')}
@@ -166,7 +169,7 @@ export default function CreateRecipe() {
                       value={input.steps[i]}
                       onChange={(e) => handleChange(e, i)}
                     />
-                    {i === input.steps.length - 1 ? (
+                    {i === input?.steps.length - 1 ? (
                       <p
                         className='step-button'
                         onClick={() => handleStepClick('add')}
@@ -204,11 +207,9 @@ export default function CreateRecipe() {
                 <img src={input.image} />
               </div>
             </div>
-             
-              <button className='button create' type='submit'>
-                Create Recipe
-              </button>
-            
+            <button className='button create' type='submit'>
+              Edit Recipe
+            </button>
           </form>
         </div>
         <button

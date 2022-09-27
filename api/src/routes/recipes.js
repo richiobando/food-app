@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const router = Router()
-const { Recipe, Diet } = require('../db')
+const { Recipe, Diet,RecipeDiet } = require('../db')
 
 const { API_KEY } = process.env
 const {
@@ -10,7 +10,7 @@ const {
   recipeDataJoined,
 } = require('../controllers/recipes')
 
-router.get('/', async ( req, res) => {
+router.get('/', async (req, res) => {
   const { name } = req.query
   try {
     const allRecipes = await recipeDataJoined()
@@ -30,7 +30,7 @@ router.get('/', async ( req, res) => {
   }
 })
 
-router.get('/:id', async ( req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   const { id } = req.params
   try {
     const recipeById = await getById(id)
@@ -41,7 +41,7 @@ router.get('/:id', async ( req, res, next) => {
   }
 })
 
-router.post('/', async ( req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const { title, summary, healthScore, steps, diets } = req.body
 
@@ -60,8 +60,30 @@ router.post('/', async ( req, res, next) => {
     next()
   }
 })
+router.put('/', async (req, res) => {
+  const { id, title, summary, healthScore, steps,diets } = req.body
+  if (!id || !title || !summary) {
+    return res
+      .status(400)
+      .json({ error: 'the necessary parameters were not received' })
+  }
+  await Recipe.update({
+    title,
+    summary,
+    healthScore,
+    steps,
+  }, { where: { id } })
+  //options:1.change association onUpdate 2.change already created life this
+  // const allDiets = await Diet.findAll({ where: { name: diets } })
+  //const updatedRecipe = find by pk(id)
+  // await updatedRecipe.setDiet([])
+  // await updatedRecipe.addDiet(allDiets)
+  console.log('updatedRecipe',updatedRecipe)
 
-router.delete('/:id', async ( req, res, next) => {
+  res.json('had been update successfully')
+})
+
+router.delete('/:id', async (req, res, next) => {
   try {
     const { id } = req.params
     await Recipe.destroy({ where: { id } })

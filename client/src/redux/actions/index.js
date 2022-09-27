@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { db } from '../../../src/full-api-food'
+// import { db } from '../../../src/full-api-food'
 
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES'
 export const GET_RECIPE_ID = 'GET_RECIPE_ID'
@@ -10,6 +10,7 @@ export const ORDER_HEALTHSCORE = 'ORDER_HEALTHSCORE'
 export const CREATE_RECIPE = 'CREATE_RECIPE'
 export const FILTER_BY_DIET = 'FILTER_BY_DIET'
 export const DELETE_RECIPE = 'DELETE_RECIPE'
+export const UPDATE_RECIPE = 'DELETE_RECIPE'
 export const CLEAN_PAGE = 'CLEAN_PAGE'
 export const CURRENT_PAGE = 'CURRENT_PAGE'
 
@@ -32,7 +33,6 @@ export const getRecipeId = (id) => {
       const data = await axios.get(`/recipes/${id}`)
       return dispatch({ type: GET_RECIPE_ID, payload: data.data })
     } catch (error) {
-      
       alert(error)
     }
   }
@@ -40,20 +40,21 @@ export const getRecipeId = (id) => {
 export const getDiets = (data) => {
   return async (dispatch) => {
     try {
-	const data = await axios.get(`/diets`)
-	    return dispatch({ type: GET_DIETS, payload: data.data })
-} catch (error) {
-	alert(error)
-}
+      const data = await axios.get(`/diets`)
+      return dispatch({ type: GET_DIETS, payload: data.data })
+    } catch (error) {
+      alert(error)
+    }
   }
 }
+
 export const getRecipeName = (name) => {
   return async (dispatch) => {
     try {
       const data = await axios(`/recipes?name=${name}`)
       return dispatch({ type: GET_RECIPE_NAME, payload: data.data })
     } catch (error) {
-      alert(error)
+      alert(`Name: "${name}" Not Found`)
     }
   }
 }
@@ -63,6 +64,7 @@ export const orderRecipesBy = (data) => {
     return dispatch({ type: ORDER_RECIPE, payload: data })
   }
 }
+
 export const createRecipe = (data) => {
   return async (dispatch) => {
     try {
@@ -74,13 +76,23 @@ export const createRecipe = (data) => {
   }
 }
 
+export const updateRecipe = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`/recipes/`, data)
+      return dispatch({ type: UPDATE_RECIPE, payload: data })
+    } catch (error) {
+      alert(error)
+    }
+  }
+}
 export const deleteRecipe = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(`/recipes/${id}`)
+      await axios.delete(`/recipes/${id}`)
       return dispatch({ type: DELETE_RECIPE, payload: id })
     } catch (error) {
-      console.error(error)
+      alert(error)
     }
   }
 }

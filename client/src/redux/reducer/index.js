@@ -41,21 +41,18 @@ const rootReducer = (state = initialState, action) => {
         recipesModified: action.payload,
       }
 
-    // // [action.payload.prop]
     case FILTER_BY_DIET:
       const originalRecipes = [...state.recipesModified]
-      console.log('diets', originalRecipes)
-      console.log('action.payload', action.payload)
-      console.log('recipesFilter.diets', originalRecipes[0].diets)
       const recipesFilter = originalRecipes.filter((r) =>
         r.diets.includes(action.payload)
       )
-      // recipesFilter.filter((r) => r.diets.some((e) => e === action.payload))
       console.log('with filter diets', recipesFilter)
-      return {
+      return recipesFilter.length === 0 ? 'Not Found':{
         ...state,
         recipesModified:
-          action.payload === 'diets' ? originalRecipes : recipesFilter,
+          action.payload === 'diets'
+            ? originalRecipes
+            : recipesFilter,
       }
     case GET_DIETS:
       return {
@@ -113,7 +110,7 @@ const rootReducer = (state = initialState, action) => {
     case CURRENT_PAGE:
       return {
         ...state,
-        currentPage:action.payload,
+        currentPage: action.payload,
       }
 
     default:
