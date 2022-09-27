@@ -53,10 +53,7 @@ export default function RecipeDetail() {
             />
           </div>
           <div className='recipeDetail-content'>
-            <p
-              className='summary'
-              dangerouslySetInnerHTML={{ __html: recipeDetail.summary }}
-            />
+              <p>{recipeDetail.summary.replace(/<[^>]+>/g, "")}</p>
             <ol>
               {recipeDetail.steps !== undefined
                 ? recipeDetail.steps?.map((r) => <li key={r}>{r}</li>)
