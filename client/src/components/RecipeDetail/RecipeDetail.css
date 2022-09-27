@@ -33,6 +33,7 @@
   justify-content: center;
 }
 .buttonDelete {
+  margin: 10px;
   border-style: none;
   font-family: sans-serif;
   font-size: 1rem;
@@ -84,11 +85,10 @@
 }
 .imageDetail {
   height: 150px;
-  position: relative;
-  top: -140px;
 }
 
 .buttonDelete:hover {
+  
   background: var(--buttonHover);
   color: var(--fontTag);
 }

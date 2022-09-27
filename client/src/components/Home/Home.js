@@ -6,13 +6,14 @@ import Nav from '../Nav/Nav'
 import RecipeCard from '../RecipeCard/RecipeCard'
 import Pagination from '../Pagination/Pagination'
 import Footer from '../Footer/Footer'
-import { getAllRecipes,setCurrentPage } from '../../redux/actions'
+import { getAllRecipes,orderRecipesBy,setCurrentPage } from '../../redux/actions'
 import Loading from '../Loading/Loading'
 
 export default function Home() {
   const dispatch = useDispatch()
   let receivedStateRecipes = useSelector((state) => state.recipesModified)
   const currentPage = useSelector((state) => state.currentPage)
+  console.log('recipes',receivedStateRecipes.map(e=>e.diets))
 
   const [order, setOrder] = useState('')
 
@@ -27,9 +28,9 @@ export default function Home() {
 
   useEffect(() => {
     if (order === 'reset') {
-      receivedStateRecipes=[]
-      dispatch(setCurrentPage(0))
       dispatch(getAllRecipes())
+      dispatch(orderRecipesBy('initial'))
+      dispatch(setCurrentPage(0))
     }
   }, [order]);
   
@@ -41,7 +42,8 @@ export default function Home() {
     <div className='home-container'>
       <Nav class='navbar' setOrder={setOrder} />
       <div>
-        {Object.keys(recipes).length < 1  ? <Loading/>:<div className='cards-container'>
+        {recipes === 'Not Found' ? <button className='button'  type='reset'onClick={() => setOrder('reset') }>Not Found</button>:
+        Object.keys(recipes).length < 1  ? <Loading/>:<div className='cards-container'>
           {recipes?.map((r) => (
             <div key={r.id}>
               <RecipeCard

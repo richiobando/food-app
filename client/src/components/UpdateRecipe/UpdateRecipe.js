@@ -26,7 +26,7 @@ const initialInputState = {
 export default function UpdateDetail() {
   const dispatch = useDispatch()
   const recipeToUpdate = useSelector((state) => state.recipeDetail)
-  const diets = useSelector((state) => state.diets) ///////////////////////// diets
+  const diets = useSelector((state) => state.diets) 
   const [input, setInput] = useState({
     ...initialInputState,
     diets: [''],
@@ -40,7 +40,7 @@ export default function UpdateDetail() {
   useEffect(() => {
     dispatch(getRecipeId(id))
     dispatch(getDiets())
-  }, [dispatch,id])
+  }, [dispatch])
 
   const [errors, setErrors] = useState('')
   const [alert, setAlert] = useState(false)

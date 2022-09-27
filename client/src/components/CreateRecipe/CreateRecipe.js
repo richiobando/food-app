@@ -21,8 +21,10 @@ export const validate = ({ name, value },errors) => {
   if ((regExNumber.test(value) || regExSymbols.test(value)) && name === 'title'){
     return {...errors,title:`Only Use Letters`}
   }
-  if (name === 'healthScore' && value < 100)
-    return {...errors,healthScore:`Use number between 1 and 100`}
+  if (name === 'healthScore' && value < 100){
+    return { ...errors, healthScore: `Use number between 1 and 100` }
+  }
+  return {}
 }
 
 export default function CreateRecipe() {
@@ -45,8 +47,8 @@ export default function CreateRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
-    if (Object.keys(errors).some(e=>e!=='')) {
+    console.log('errors',errors)
+    if (Object?.keys(errors).some(e=>e!=='')) {
       return setAlert(true)
     }
     dispatch(createRecipe(input))

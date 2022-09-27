@@ -42,18 +42,20 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case FILTER_BY_DIET:
-      const originalRecipes = [...state.recipesModified]
+      const originalRecipes = [...state.recipes]
       const recipesFilter = originalRecipes.filter((r) =>
         r.diets.includes(action.payload)
       )
-      console.log('with filter diets', recipesFilter)
-      return recipesFilter.length === 0 ? 'Not Found':{
-        ...state,
-        recipesModified:
-          action.payload === 'diets'
-            ? originalRecipes
-            : recipesFilter,
-      }
+      return recipesFilter.length === 0
+        ? {
+            ...state,
+            recipesModified: 'Not Found',
+          }
+        : {
+            ...state,
+            recipesModified:
+              action.payload === 'diets' ? originalRecipes : recipesFilter,
+          }
     case GET_DIETS:
       return {
         ...state,
@@ -61,23 +63,24 @@ const rootReducer = (state = initialState, action) => {
       }
     case ORDER_RECIPE:
       const values = [...state.recipesModified]
-      values.sort((a, b) => {
-        return (
-          (action.payload === 'A-Z' &&
-            ((a.title.toUpperCase() > b.title.toUpperCase() && 1) ||
-              (a.title.toUpperCase() < b.title.toUpperCase() && -1))) ||
-          (action.payload === 'Z-A' &&
-            ((b.title.toUpperCase() > a.title.toUpperCase() && 1) ||
-              (b.title.toUpperCase() < a.title.toUpperCase() && -1))) ||
-          (action.payload === 'L-H' &&
-            ((a.healthScore > b.healthScore && 1) ||
-              (a.healthScore < b.healthScore && -1))) ||
-          (action.payload === 'H-L' &&
-            ((b.healthScore > a.healthScore && 1) ||
-              (b.healthScore < a.healthScore && -1))) ||
-          0
-        )
-      })
+      values.length === 0 &&
+        values.sort((a, b) => {
+          return (
+            (action.payload === 'A-Z' &&
+              ((a.title.toUpperCase() > b.title.toUpperCase() && 1) ||
+                (a.title.toUpperCase() < b.title.toUpperCase() && -1))) ||
+            (action.payload === 'Z-A' &&
+              ((b.title.toUpperCase() > a.title.toUpperCase() && 1) ||
+                (b.title.toUpperCase() < a.title.toUpperCase() && -1))) ||
+            (action.payload === 'L-H' &&
+              ((a.healthScore > b.healthScore && 1) ||
+                (a.healthScore < b.healthScore && -1))) ||
+            (action.payload === 'H-L' &&
+              ((b.healthScore > a.healthScore && 1) ||
+                (b.healthScore < a.healthScore && -1))) ||
+            0
+          )
+        })
       return {
         ...state,
         recipesModified: action.payload === 'initial' ? state.recipes : values,

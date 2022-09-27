@@ -28,22 +28,21 @@ export default function RecipeDetail() {
         <div className='recipeDetail-title'>
             <h1>{recipeDetail.title}</h1>
             {
-              false? (<> 
+              recipeDetail.created && (<> 
               <Link
                 to={`/update/${recipeDetail.id}`}
                 className='buttonDelete'
               >
                 Edit
               </Link>
-          </>
-          ) : (
               <button
                 className='buttonDelete'
                 onClick={() => handleDelete(recipeDetail.id)}
               >
                 Delete
               </button>
-          )}
+          </>
+          ) }
         </div>
         <div className='recipeDetail-container'>
           <div>

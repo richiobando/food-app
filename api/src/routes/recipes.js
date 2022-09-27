@@ -78,7 +78,6 @@ router.put('/', async (req, res) => {
   //const updatedRecipe = find by pk(id)
   // await updatedRecipe.setDiet([])
   // await updatedRecipe.addDiet(allDiets)
-  console.log('updatedRecipe',updatedRecipe)
 
   res.json('had been update successfully')
 })
@@ -88,7 +87,7 @@ router.delete('/:id', async (req, res, next) => {
     const { id } = req.params
     await Recipe.destroy({ where: { id } })
     res.send(`id: ${id} deleted successfully`)
-  } catch (error) {
+  } catch (e) {
     console.error(e)
     next()
   }
