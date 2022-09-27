@@ -61,7 +61,7 @@ const idRecipe = {
   image: 'https://spoonacular.com/recipeImages/715594-556x370.jpg',
 }
 const recipe = {
-  name: 'Gallo Pinto',
+  title: 'Gallo Pinto',
   summary: 'arroz con frijoles ',
   steps: [],
   healthScore: 100,

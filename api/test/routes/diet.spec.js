@@ -2,7 +2,7 @@
 const { expect } = require('chai')
 const session = require('supertest-session')
 const app = require('../../src/app.js')
-const { Recipe, conn } = require('../../src/db.js')
+const { Recipe,Diet ,conn } = require('../../src/db.js')
 const { spoonDiets } = require('../../src/routes/diets.js')
 const agent = session(app)
 const firstRecipe = {
@@ -61,7 +61,7 @@ const idRecipe = {
   image: 'https://spoonacular.com/recipeImages/715594-556x370.jpg',
 }
 const recipe = {
-  name: 'Gallo Pinto',
+  title: 'Gallo Pinto',
   summary: 'arroz con frijoles ',
   steps: [],
   healthScore: 100,

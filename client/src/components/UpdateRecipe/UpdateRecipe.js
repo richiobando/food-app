@@ -192,7 +192,7 @@ export default function UpdateDetail() {
                 {diets?.map((d, i) => (
                   <p
                     className={`diet-tag ${
-                      input.diets.includes(d.name) ? 'included' : ''
+                      input?.diets.includes(d.name) ? 'included' : ''
                     }`}
                     key={i}
                     value={d.name}

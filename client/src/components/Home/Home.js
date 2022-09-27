@@ -13,7 +13,6 @@ export default function Home() {
   const dispatch = useDispatch()
   let receivedStateRecipes = useSelector((state) => state.recipesModified)
   const currentPage = useSelector((state) => state.currentPage)
-  console.log('recipes',receivedStateRecipes.map(e=>e.diets))
 
   const [order, setOrder] = useState('')
 
