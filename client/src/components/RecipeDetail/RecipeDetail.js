@@ -29,12 +29,12 @@ export default function RecipeDetail() {
             <h1>{recipeDetail.title}</h1>
             {
               recipeDetail.created && (<> 
-              <Link
+              {/* <Link
                 to={`/update/${recipeDetail.id}`}
                 className='buttonDelete'
               >
                 Edit
-              </Link>
+              </Link> */}
               <button
                 className='buttonDelete'
                 onClick={() => handleDelete(recipeDetail.id)}
