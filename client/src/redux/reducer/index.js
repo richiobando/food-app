@@ -49,7 +49,7 @@ const rootReducer = (state = initialState, action) => {
       return recipesFilter.length === 0
         ? {
             ...state,
-            recipesModified: 'Not Found',
+            recipesModified: [{error:'Not Found'}],
           }
         : {
             ...state,
@@ -63,7 +63,7 @@ const rootReducer = (state = initialState, action) => {
       }
     case ORDER_RECIPE:
       const values = [...state.recipesModified]
-      values.length === 0 &&
+      values.length !== 0 &&
         values.sort((a, b) => {
           return (
             (action.payload === 'A-Z' &&

@@ -6,7 +6,11 @@ import Nav from '../Nav/Nav'
 import RecipeCard from '../RecipeCard/RecipeCard'
 import Pagination from '../Pagination/Pagination'
 import Footer from '../Footer/Footer'
-import { getAllRecipes,orderRecipesBy,setCurrentPage } from '../../redux/actions'
+import {
+  getAllRecipes,
+  orderRecipesBy,
+  setCurrentPage,
+} from '../../redux/actions'
 import Loading from '../Loading/Loading'
 
 export default function Home() {
@@ -31,8 +35,8 @@ export default function Home() {
       dispatch(orderRecipesBy('initial'))
       dispatch(setCurrentPage(0))
     }
-  }, [order]);
-  
+  }, [order])
+
   const handleNumberClick = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber * recipesPerPage))
   }
@@ -41,30 +45,44 @@ export default function Home() {
     <div className='home-container'>
       <Nav class='navbar' setOrder={setOrder} />
       <div>
-        {recipes === 'Not Found' ? <button className='button'  type='reset'onClick={() => setOrder('reset') }>Not Found</button>:
-        Object.keys(recipes).length < 1  ? <Loading/>:<div className='cards-container'>
-          {recipes?.map((r) => (
-            <div key={r.id}>
-              <RecipeCard
-                id={r.id}
-                created={r.created}
-                image={r.image}
-                name={r.title}
-                diet={r.diets}
-                healthScore={r.healthScore}
+        {recipes[0]?.error === 'Not Found' ? (
+          <>
+            <p>Not Found</p>
+            <button
+              className='button notFound'
+              type='reset'
+              onClick={() => setOrder('reset')}
+            >
+              Click to Refresh
+            </button>
+          </>
+        ) : Object.keys(recipes).length < 1 ? (
+          <Loading />
+        ) : (
+          <div className='cards-container'>
+            {recipes?.map((r) => (
+              <div key={r.id}>
+                <RecipeCard
+                  id={r.id}
+                  created={r.created}
+                  image={r.image}
+                  name={r.title}
+                  diet={r.diets}
+                  healthScore={r.healthScore}
+                />
+              </div>
+            ))}
+            <div className='pagination'>
+              <Pagination
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                handleNumberClick={handleNumberClick}
+                recipesPerPage={recipesPerPage}
+                RecipesNumber={receivedStateRecipes.length / recipesPerPage}
               />
             </div>
-          ))}
-          <div className='pagination'>
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              handleNumberClick={handleNumberClick}
-              recipesPerPage={recipesPerPage}
-              RecipesNumber={receivedStateRecipes.length / recipesPerPage}
-            />
           </div>
-        </div>}
+        )}
       </div>
       <Footer />
     </div>

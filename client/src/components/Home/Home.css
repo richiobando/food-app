@@ -16,6 +16,9 @@
 .cards-container > *:nth-child(2n):nth-last-of-type(1) {
   grid-column: span 3;
 }
+.notFound{
+  background: #f00;
+}
 .pagination {
   padding-top: 150px;
   display: flex;

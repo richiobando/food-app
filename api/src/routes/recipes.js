@@ -60,26 +60,30 @@ router.post('/', async (req, res, next) => {
     next()
   }
 })
-router.put('/', async (req, res) => {
+router.put('/', async (req, res,next) => {
   const { id, title, summary, healthScore, steps,diets } = req.body
   if (!id || !title || !summary) {
     return res
       .status(400)
       .json({ error: 'the necessary parameters were not received' })
   }
-  await Recipe.update({
-    title,
-    summary,
-    healthScore,
-    steps,
-  }, { where: { id } })
-  //options:1.change association onUpdate 2.change already created life this
-  // const allDiets = await Diet.findAll({ where: { name: diets } })
-  //const updatedRecipe = find by pk(id)
-  // await updatedRecipe.setDiet([])
-  // await updatedRecipe.addDiet(allDiets)
-
-  res.json('had been update successfully')
+  try {
+	await Recipe.update({
+	    title,
+	    summary,
+	    healthScore,
+	    steps,
+	  }, { where: { id } })
+	  const allDiets = await Diet.findAll({ where: { name: diets } })
+    const updatedRecipe = await Recipe.findByPk(id)
+	  await updatedRecipe.setDiets([])
+	  await updatedRecipe.addDiet(allDiets)
+	
+	  res.json('had been update successfully')
+} catch (error) {
+	console.error(error)
+    next()
+}
 })
 
 router.delete('/:id', async (req, res, next) => {

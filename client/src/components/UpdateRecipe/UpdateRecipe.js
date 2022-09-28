@@ -26,10 +26,10 @@ const initialInputState = {
 export default function UpdateDetail() {
   const dispatch = useDispatch()
   const recipeToUpdate = useSelector((state) => state.recipeDetail)
-  const diets = useSelector((state) => state.diets) 
+  const diets = useSelector((state) => state.diets)
   const [input, setInput] = useState({
     ...initialInputState,
-    diets: [''],
+    diets: [],
     steps: [''],
   })
 
@@ -192,7 +192,7 @@ export default function UpdateDetail() {
                 {diets?.map((d, i) => (
                   <p
                     className={`diet-tag ${
-                      input?.diets.includes(d.name) ? 'included' : ''
+                      input?.diets?.includes(d.name) ? 'included' : ''
                     }`}
                     key={i}
                     value={d.name}

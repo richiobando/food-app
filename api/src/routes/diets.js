@@ -18,7 +18,7 @@ const spoonDiets = [
 ]
 const router = Router()
 
-router.get('/', async ( req, res) => {
+router.get('/', async (req, res) => {
   try {
     const data = await Diet.findAll()
     if (data.length > 0) {
@@ -30,9 +30,8 @@ router.get('/', async ( req, res) => {
             name: spoonDiet,
           }
         })
-      )
-
-      const diets = await Diet.findAll()
+        )
+        const diets = await Diet.findAll()
       return res.json(diets)
     }
   } catch (e) {

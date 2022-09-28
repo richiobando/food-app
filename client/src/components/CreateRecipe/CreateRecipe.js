@@ -47,7 +47,6 @@ export default function CreateRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('errors',errors)
     if (Object?.keys(errors).some(e=>e!=='')) {
       return setAlert(true)
     }
