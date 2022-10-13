@@ -70,3 +70,30 @@ module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 }
+
+
+
+/* DB_USER=postgres
+DB_PASSWORD=dOITUGUqJe3nQGDIIxGY
+DB_HOST=containers-us-west-18.railway.app:7643
+API_KEY=de9beddb3aa4489785605813eebc7731
+DIALECT=postgresql
+DB_NAME=railway 
+
+interna
+
+postgres://psql:e2tcSAau3cDz9jNFzqN9V2KjvVXwfpBS@dpg-cd45ep2en0hstdce4c2g-a/food_2a6x
+external 
+postgres://psql:e2tcSAau3cDz9jNFzqN9V2KjvVXwfpBS@dpg-cd45ep2en0hstdce4c2g-a.oregon-postgres.render.com/food_2a6x
+
+DB_USER=psql
+DB_PASSWORD=e2tcSAau3cDz9jNFzqN9V2KjvVXwfpBS
+DB_HOST=dpg-cd45ep2en0hstdce4c2g-a
+
+dpg-cd45ep2en0hstdce4c2g-a.oregon-postgres.render.com
+
+API_KEY=de9beddb3aa4489785605813eebc7731
+DIALECT=postgres
+DB_NAME=food_2a6x
+
+*/

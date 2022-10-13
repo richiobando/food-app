@@ -1,12 +1,10 @@
 const { Router } = require('express')
 const router = Router()
-const { Recipe, Diet,RecipeDiet } = require('../db')
+const { Recipe, Diet } = require('../db')
 
 const { API_KEY } = process.env
 const {
   getById,
-  getDbInfo,
-  getApiData,
   recipeDataJoined,
 } = require('../controllers/recipes')
 
@@ -52,14 +50,15 @@ router.post('/', async (req, res, next) => {
       steps,
     })
     const allDiets = await Diet.findAll({ where: { name: diets } })
+    await newRecipe.addDiet(allDiets)
 
-    newRecipe.addDiet(allDiets)
     res.json(newRecipe)
   } catch (e) {
     console.error(e)
     next()
   }
 })
+
 router.put('/', async (req, res,next) => {
   const { id, title, summary, healthScore, steps,diets } = req.body
   if (!id || !title || !summary) {
@@ -69,17 +68,17 @@ router.put('/', async (req, res,next) => {
   }
   try {
 	await Recipe.update({
-	    title,
-	    summary,
-	    healthScore,
-	    steps,
-	  }, { where: { id } })
-	  const allDiets = await Diet.findAll({ where: { name: diets } })
+      title,
+      summary,
+      healthScore,
+      steps,
+    }, { where: { id } })
+    const allDiets = await Diet.findAll({ where: { name: diets } })
     const updatedRecipe = await Recipe.findByPk(id)
-	  await updatedRecipe.setDiets([])
-	  await updatedRecipe.addDiet(allDiets)
+    await updatedRecipe.setDiets([])
+  await updatedRecipe.addDiet(allDiets)
 	
-	  res.json('had been update successfully')
+    res.json('had been update successfully')
 } catch (error) {
 	console.error(error)
     next()
