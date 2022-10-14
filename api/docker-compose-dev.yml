@@ -1,0 +1,30 @@
+version: "3.0"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3001"
+    links:
+      - psqldb
+    environment: 
+      - DB_USER=user
+      - DB_PASSWORD=passdb
+      - DB_HOST=database:5432
+      - API_KEY=de9beddb3aa4489785605813eebc7731
+    volumes:
+      - .:/home/app
+  psqldb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment: 
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=passdb
+      - POSTGRES_DB=food
+    volumes:
+      - psqldb:/var/lib/postgresql/data     
+
+volumes:
+  psqldb:

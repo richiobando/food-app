@@ -1,0 +1,25 @@
+version: "3.0"
+services:
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    links:
+      - psqldb
+    environment: 
+      - DB_USER=postgres
+      - DB_PASSWORD=Rmfc116Ntpss
+      - DB_HOST=localhost:5432
+      - API_KEY=de9beddb3aa4489785605813eebc7731
+  psqldb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment: 
+      - POSTGRES_USER=user
+      - POSTGRES_DB=food
+      - POSTGRES_PASSWORD=passdb
+    volumes:
+      - psqldb:/var/lib/postgresql/data
+volumes:
+  psqldb:
