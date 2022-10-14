@@ -1,6 +1,6 @@
 import React, {  useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams,Link } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { getRecipeId, cleanPage, deleteRecipe } from '../../redux/actions'
 import Loading from '../Loading/Loading'
 import './RecipeDetail.css'
@@ -60,15 +60,15 @@ export default function RecipeDetail() {
                 : []}
             </ol>
             <p>Health Score: {recipeDetail.healthScore}</p>
-            <div>
-              <h3>Dish Types</h3>
+              <div>
+              {recipeDetail.dishTypes && <h3>Dish Types</h3>}
               {recipeDetail.dishTypes?.map((t, i) => (
                 <p key={i} className='tag type'>
                   {t}
                 </p>
               ))}
             </div>
-            <h3>Diets</h3>
+            {recipeDetail.diets&&<h3>Diets</h3>}
             <div className='diets-container'>
               {recipeDetail.diets?.map((d, i) => (
                 <p className='tag diet' key={i}>

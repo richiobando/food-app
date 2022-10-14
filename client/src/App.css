@@ -25,11 +25,11 @@ a {
   padding: 28px 28px;
   transition: 0.4s;
 }
-.button:hover {
+
+.button:hover{
   background: var(--buttonHover);
   color: var(--fontTag);
 }
-
 .App-header {
   background-color: var(--bgColor);
   min-height: 100vh;

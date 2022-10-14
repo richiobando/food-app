@@ -28,7 +28,7 @@
 .recipeDetail-title {
   display: flex;
   flex-direction: row;
-  
+
   align-items: center;
   justify-content: center;
 }
@@ -47,7 +47,7 @@
 .recipeDetail-container {
   display: flex;
   flex-direction: row;
-  
+
   align-items: center;
   justify-content: center;
 }
@@ -75,24 +75,23 @@
   padding: 1px 5px;
   border-radius: 3px;
 }
-.diet{
+.diet {
   background: var(--tagBg);
   color: black;
 }
-.type{
+.type {
   background: rgb(2, 192, 217);
   color: black;
 }
 .imageDetail {
-  height: 150px;
+  height: 300px;
 }
 
 .buttonDelete:hover {
-  
   background: var(--buttonHover);
   color: var(--fontTag);
 }
 
-.recipeDetail-content{
+.recipeDetail-content {
   padding-left: 10px;
 }

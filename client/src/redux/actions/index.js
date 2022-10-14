@@ -23,7 +23,7 @@ export const getAllRecipes = () => {
       const data = await axios.get('/recipes')
       return dispatch({ type: GET_ALL_RECIPES, payload: data.data })
     } catch (error) {
-      console.error(error)
+      alert(error)
     }
   }
 }
@@ -71,7 +71,7 @@ export const createRecipe = (data) => {
       const response = await axios.post('/recipes', data)
       return dispatch({ type: CREATE_RECIPE, payload: response.data })
     } catch (error) {
-      console.error(error)
+      alert(error)
     }
   }
 }
@@ -79,7 +79,7 @@ export const createRecipe = (data) => {
 export const updateRecipe = (data) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`/recipes/`, data)
+      await axios.put(`/recipes/`, data)
       return dispatch({ type: UPDATE_RECIPE, payload: data })
     } catch (error) {
       alert(error)

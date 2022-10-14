@@ -36,6 +36,7 @@
 }
 .createBody .button {
   background: var(--bgColor);
+  color: var(--buttonFont);
   width: 163px;
 }
 .createBody .button:hover {

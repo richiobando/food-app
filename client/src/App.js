@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage/LandingPage'
 import CreateRecipe from './components/CreateRecipe/CreateRecipe'
 import RecipeDetail from './components/RecipeDetail/RecipeDetail'
 import UpdateDetail from './components/UpdateRecipe/UpdateRecipe'
-import PageNotFound from './components/PageNotFound/PageNotFound'
+// import PageNotFound from './components/PageNotFound/PageNotFound'
 
 function App() {
   return (

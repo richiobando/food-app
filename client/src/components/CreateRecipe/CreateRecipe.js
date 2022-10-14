@@ -6,13 +6,11 @@ import './CreateRecipe.css'
 
 const initialInputState = {
   title: '',
-  image: '',
   healthScore: 0,
   summary: '',
   diets: [],
   steps: [''],
   image: 'https://cutt.ly/oVxg2rd',
-  healthScore: 2,
 }
 export const validate = ({ name, value },errors) => {
   const regExNumber = new RegExp(`[0-9]`, 'g')
@@ -21,10 +19,13 @@ export const validate = ({ name, value },errors) => {
   if ((regExNumber.test(value) || regExSymbols.test(value)) && name === 'title'){
     return {...errors,title:`Only Use Letters`}
   }
-  if (name === 'healthScore' && value < 100){
+  if (name === 'title' && value.length > 50) {
+    return {...errors,title:`Title can't exceed 50 character`}
+  }
+  if (name === 'healthScore' && value > 0 && value < 100){
     return { ...errors, healthScore: `Use number between 1 and 100` }
   }
-  return {}
+  return {} // this is for empty errors state if there is no error
 }
 
 export default function CreateRecipe() {
@@ -42,17 +43,21 @@ export default function CreateRecipe() {
 
   useEffect(() => {
     dispatch(getDiets())
+    return () => {
+      
+    }
   }, [dispatch])
   const history = useHistory()
 
-  const handleSubmit = (e) => {
+  const  handleSubmit = async(e) => {
     e.preventDefault()
     if (Object?.keys(errors).some(e=>e!=='')) {
       return setAlert(true)
     }
-    dispatch(createRecipe(input))
+    await dispatch(createRecipe(input))
     setInput(initialInputState)
     history.push('/home')
+    window.location.reload();
   }
   const handleChange = (e, i) => {
     e.preventDefault()
@@ -202,14 +207,12 @@ export default function CreateRecipe() {
                 ))}
               </div>
               <div className='image-container'>
-                <img src={input.image} />
+                <img src={input.image} alt={input.title} />
               </div>
             </div>
-             
-              <button className='button create' type='submit'>
-                Create Recipe
-              </button>
-            
+                <button className='button create' type='submit'>
+                  Create Recipe
+                </button>
           </form>
         </div>
         <button

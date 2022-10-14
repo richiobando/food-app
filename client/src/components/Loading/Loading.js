@@ -8,6 +8,11 @@ export default function Loading() {
         <div className={s.content}>
         </div>
       </div>
+
     </div>
+
+
+    
+    
   )
 }

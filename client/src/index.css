@@ -1,10 +1,10 @@
 :root {
-  
-  --bgPrimary: #fff;
-  --bgColor: #f3f3f3;
-  --fontColor: #000;
+
+  --bgPrimary: #000;
+  --bgColor: #252120;
+  --fontColor: #fff;
+  --buttonFont: #fff;
   --tagBg: rgb(255, 149, 0);
-  --buttonFont: #000;
   --tagSecBg: rgb(177, 100, 41);
   --fontTag: #252120;
   --buttonHover: #fff;
@@ -13,13 +13,13 @@
 }
 @media (prefers-color-scheme: dark) {
   :root{
-    --bgPrimary: #000;
-    --bgColor: #252120;
-    --fontColor: #fff;
-    --buttonFont: #fff;
-  
+    --bgPrimary: #fff;
+    --bgColor: #f3f3f3;
+    --fontColor: #000;
+    --buttonFont: #000;
   }
 }
+
 body {
   margin: 0;
   padding: 0;

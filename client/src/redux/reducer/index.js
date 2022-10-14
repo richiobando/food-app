@@ -19,11 +19,17 @@ const initialState = {
   recipeDetail: {},
   diets: [],
   currentPage: 0,
+  hasFilter: false
 }
-
+// level 3
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_RECIPES:
+      if (state.hasFilter) {
+        return {
+          ...state
+        }
+      }
       return {
         ...state,
         recipes: action.payload,
@@ -42,6 +48,7 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case FILTER_BY_DIET:
+
       const originalRecipes = [...state.recipes]
       const recipesFilter = originalRecipes.filter((r) =>
         r.diets.includes(action.payload)
@@ -52,8 +59,9 @@ const rootReducer = (state = initialState, action) => {
             recipesModified: [{error:'Not Found'}],
           }
         : {
-            ...state,
-            recipesModified:
+          ...state,
+          hasFilter: true,
+          recipesModified:
               action.payload === 'diets' ? originalRecipes : recipesFilter,
           }
     case GET_DIETS:
@@ -83,6 +91,7 @@ const rootReducer = (state = initialState, action) => {
         })
       return {
         ...state,
+        hasFilter: true,
         recipesModified: action.payload === 'initial' ? state.recipes : values,
       }
     case ORDER_HEALTHSCORE:
@@ -90,13 +99,14 @@ const rootReducer = (state = initialState, action) => {
       valuesOrderHealthScore.sort((a, b) => a.healthScore - b.healthScore)
       return {
         ...state,
+        hasFilter: true,
         recipesModified: valuesOrderHealthScore,
       }
-
     case CREATE_RECIPE:
       return {
         ...state,
         recipes: state.recipes.concat(action.payload),
+        recipesModified: state.recipes.concat(action.payload),
       }
     case DELETE_RECIPE:
       return {
@@ -123,23 +133,16 @@ const rootReducer = (state = initialState, action) => {
 
 export default rootReducer
 // idea for refactor
-/*
-
- const days = ['lunes', 'martes', 'miercoles', 'jueves','viernes','sabado','domingo'] //change days to actions functions
- 
-const actions = {
-  GET_ALL_RECIPES: return {...state, recipes: action.payload, recipesModified: action.payload,}
+/* const actions = {
+  GET_ALL_RECIPES: {...state, recipes: action.payload, recipesModified: action.payload,},
+  DELETE_RECIPE: {
+    ...state,
+    recipesModified: state.recipesModified.filter(
+      (r) => r.id !== action.payload
+    ),
+  }
 } 
 const rootReducer = (state = initialState, action) => {
-  if(actions){
-    
-  }
+  return actions[action.type]
 }
-  
- function getDay(n) {
-   if (n < 1 || n > 7) {
-     throw Error('no a valid number')
-   }
-   return days[n+1]
- }
  */

@@ -12,21 +12,27 @@ import './Nav.css'
 import searchIcon from '../../img/search-icon.png'
 import logo from '../../img/logo-main.png'
 
-export default function Nav({ setOrder ,}) {
+export default function Nav({ setOrder }) {
   const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   const [active, setActive] = useState(false)
+  const [filter, setFilter] = useState({
+    order: '',
+    diets: '',
+  })
 
   const diets = useSelector((state) => state.diets)
-
   useEffect(() => {
     dispatch(getDiets())
   }, [dispatch])
 
   const handleSearch = (e) => {
     e.preventDefault()
-    console.log('search',search)
+
     dispatch(getRecipeName(search))
+    dispatch(orderRecipesBy(filter.order)) 
+    dispatch(filterByDiet(filter.diets))
+    
     setOrder('')
     dispatch(setCurrentPage(0))
     setSearch('')
@@ -35,33 +41,42 @@ export default function Nav({ setOrder ,}) {
     e.preventDefault()
     setSearch(e.target.value)
   }
-  
-  const handleOrder = (e) => {
-    dispatch(orderRecipesBy(e.target.value))
+  const handleOrder = (val) => {
+    setFilter({...filter, order:val})
+    dispatch(orderRecipesBy(val))
     setOrder('')
   }
-  const handleChosenDiet = (e) => {
-    dispatch(filterByDiet(e.target.value.toLowerCase()))
+  const handleChosenDiet = (val) => {
+    dispatch(setCurrentPage(0))
+    setFilter({...filter, diets:val.toLowerCase()})
+    dispatch(filterByDiet(val.toLowerCase()))
   }
   return (
     <nav>
-      <Link className='button logo' to={'/home'} onClick={(e) => setOrder('reset')}>
-        <img src={logo} alt="logo" />
+      <Link
+        className='button logo'
+        to={'/home'}
+        onClick={(e) => setOrder('reset')}
+      >
+        <img src={logo} alt='logo' />
       </Link>
       <Link className='button' to={'/create'}>
         Create Recipe
       </Link>
 
       {/* Alphabetical order */}
-      <select className='button select' onChange={(e) => handleOrder(e)}>
+      <select className='button' onChange={(e) => handleOrder(e.target.value)}>
         <option value='initial'>Order</option>
         <option value='A-Z'>A-Z</option>
         <option value='Z-A'>Z-A</option>
         <option value='L-H'>Low-High Health Score</option>
         <option value='H-L'>High-Low Health Score</option>
       </select>
-      <select className='button select' onChange={(e) => handleChosenDiet(e)}>
-        <option>Diets</option>
+      <select
+        className='button'
+        onChange={(e) => handleChosenDiet(e.target.value)}
+      >
+        <option>diets</option>
         {diets?.map((d, i) => (
           <option key={i}> {d.name}</option>
         ))}
@@ -81,10 +96,13 @@ export default function Nav({ setOrder ,}) {
             placeholder='Search Recipes'
           />
           {active === true ? (
-            <button type='submit' className='button'>Search</button>
+            <button type='submit' className='button'>
+              Search
+            </button>
           ) : (
             <img
-              src={searchIcon}
+                src={searchIcon}
+                alt='Search icon'
               className={`searchIcon button ${active === true && 'active'}`}
               onClick={() => setActive(true)}
             />
@@ -97,7 +115,6 @@ export default function Nav({ setOrder ,}) {
           </i>
         </form>
       </ul>
-      
     </nav>
   )
 }

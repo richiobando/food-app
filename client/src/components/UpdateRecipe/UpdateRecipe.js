@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useHistory, Link } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { getDiets, getRecipeId, updateRecipe } from '../../redux/actions'
 import './UpdateRecipe.css'
 
@@ -15,13 +15,11 @@ export const validate = ({ name, value }) => {
 }
 const initialInputState = {
   title: '',
-  image: '',
   healthScore: 0,
   summary: '',
   diets: [],
   steps: [''],
   image: 'https://cutt.ly/oVxg2rd',
-  healthScore: 2,
 }
 export default function UpdateDetail() {
   const dispatch = useDispatch()
@@ -33,6 +31,11 @@ export default function UpdateDetail() {
     steps: [''],
   })
 
+  const [errors, setErrors] = useState('')
+  const [alert, setAlert] = useState(false)
+  const { id } = useParams()
+  const history = useHistory()
+  
   useEffect(() => {
     setInput(recipeToUpdate)
   }, [recipeToUpdate])
@@ -40,12 +43,8 @@ export default function UpdateDetail() {
   useEffect(() => {
     dispatch(getRecipeId(id))
     dispatch(getDiets())
-  }, [dispatch])
+  }, [dispatch,id])
 
-  const [errors, setErrors] = useState('')
-  const [alert, setAlert] = useState(false)
-  const { id } = useParams()
-  const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -55,6 +54,7 @@ export default function UpdateDetail() {
     dispatch(updateRecipe(input))
     setInput(recipeToUpdate)
     history.push('/home')
+    window.location.reload();
   }
   const handleChange = (e, i) => {
     e.preventDefault()
@@ -204,7 +204,7 @@ export default function UpdateDetail() {
                 ))}
               </div>
               <div className='image-container'>
-                <img src={input.image} />
+                <img src={input.image} alt={input.title} />
               </div>
             </div>
             <button className='button create' type='submit'>

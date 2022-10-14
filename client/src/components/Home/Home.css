@@ -16,7 +16,7 @@
 .cards-container > *:nth-child(2n):nth-last-of-type(1) {
   grid-column: span 3;
 }
-.notFound{
+.notFound {
   background: #f00;
 }
 .pagination {

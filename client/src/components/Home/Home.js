@@ -21,16 +21,20 @@ export default function Home() {
   const [order, setOrder] = useState('')
 
   const recipesPerPage = 9
-  let recipes = receivedStateRecipes?.slice(
+  let recipes = []
+   recipes = receivedStateRecipes?.slice(
     currentPage,
     currentPage + recipesPerPage
   )
+  
   useEffect(() => {
+    recipes = []
     dispatch(getAllRecipes())
   }, [dispatch])
 
   useEffect(() => {
     if (order === 'reset') {
+      window.location.reload();
       dispatch(getAllRecipes())
       dispatch(orderRecipesBy('initial'))
       dispatch(setCurrentPage(0))
@@ -56,7 +60,7 @@ export default function Home() {
               Click to Refresh
             </button>
           </>
-        ) : Object.keys(recipes).length < 1 ? (
+        ) : Object.keys(recipes).length === 0 ? (
           <Loading />
         ) : (
           <div className='cards-container'>
@@ -67,7 +71,7 @@ export default function Home() {
                   created={r.created}
                   image={r.image}
                   name={r.title}
-                  diet={r.diets}
+                  diets={r.diets}
                   healthScore={r.healthScore}
                 />
               </div>
