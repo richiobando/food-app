@@ -20,7 +20,7 @@ export const getAllRecipes = () => {
       // const data = db.results
       // return dispatch({ type: GET_ALL_RECIPES, payload: data })
 
-      const data = await axios.get('/recipes')
+      const data = await axios.get('https://run.mocky.io/v3/d9ef196d-62a6-4abe-b3ab-b60676c3a4e7')
       return dispatch({ type: GET_ALL_RECIPES, payload: data.data })
     } catch (error) {
       alert(error)
