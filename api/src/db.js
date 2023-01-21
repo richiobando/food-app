@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize')
 const fs = require('fs')
 const path = require('path')
 
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME ,DIALECT } = process.env
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME ,DIALECT, DB_PORT } = process.env
 
 let sequelize =
   process.env.NODE_ENV === 'production'
@@ -11,7 +11,7 @@ let sequelize =
         database: DB_NAME,
         dialect: DIALECT,
         host: DB_HOST,
-        port: 5432,
+        port: DB_PORT,
         username: DB_USER,
         password: DB_PASSWORD,
         pool: {
@@ -73,27 +73,3 @@ module.exports = {
 
 
 
-/* DB_USER=postgres
-DB_PASSWORD=dOITUGUqJe3nQGDIIxGY
-DB_HOST=containers-us-west-18.railway.app:7643
-API_KEY=de9beddb3aa4489785605813eebc7731
-DIALECT=postgresql
-DB_NAME=railway 
-
-interna
-
-postgres://psql:e2tcSAau3cDz9jNFzqN9V2KjvVXwfpBS@dpg-cd45ep2en0hstdce4c2g-a/food_2a6x
-external 
-postgres://psql:e2tcSAau3cDz9jNFzqN9V2KjvVXwfpBS@dpg-cd45ep2en0hstdce4c2g-a.oregon-postgres.render.com/food_2a6x
-
-DB_USER=psql
-DB_PASSWORD=e2tcSAau3cDz9jNFzqN9V2KjvVXwfpBS
-DB_HOST=dpg-cd45ep2en0hstdce4c2g-a
-
-dpg-cd45ep2en0hstdce4c2g-a.oregon-postgres.render.com
-
-API_KEY=de9beddb3aa4489785605813eebc7731
-DIALECT=postgres
-DB_NAME=food_2a6x
-
-*/
