@@ -1,14 +1,14 @@
-version: "3.0"
+version: '3.0'
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "3001:3001"
+      - '3000:3000'
     links:
       - psqldb
-    environment: 
+    environment:
       - DB_USER=user
       - DB_PASSWORD=passdb
       - DB_HOST=database:5432
@@ -18,13 +18,13 @@ services:
   psqldb:
     image: postgres
     ports:
-      - "5432:5432"
-    environment: 
+      - '5432:5432'
+    environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=passdb
       - POSTGRES_DB=food
     volumes:
-      - psqldb:/var/lib/postgresql/data     
+      - psqldb:/var/lib/postgresql/data
 
 volumes:
   psqldb:

@@ -9,8 +9,8 @@ import store from './redux/store'
 import axios from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
-
-axios.defaults.baseURL = process.env.VITE_API || 'http://localhost:3001';
+const API = process.env.REACT_APP_API
+axios.defaults.baseURL = API || 'http://localhost:3000';
 
 ReactDOM.render(
   <React.StrictMode>
